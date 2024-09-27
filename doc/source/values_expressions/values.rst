@@ -221,44 +221,46 @@ mais quatro, mais dois, mais um, mais 0,5 e mais 0,125.
 .. figure:: real.png
    :align: center
    :scale: 22%
-
+   :name: real_fixed
+   
    Representação de número real em virgula fixa
    
 **Exemplo**
 
 Função para converter uma *string*, representando um valor real em base decimal,
-para representação em binário sobre uma variável do tipo unsigned long int.
-Assumir como unidade o bit da posição 5.
+para representação em binário sobre uma variável do tipo ``unsigned long int``.
+Na representação binária assumir a posição ``BIN_FRAC`` como a posição de peso unitário.
+Relativamente à :numref:`real_fixed` seria a posição 5.
 
 .. literalinclude:: ../../../code/values_expressions/float/calc_fixed.c
    :language: c
    :linenos:
    :lines: 13-27
-   :caption: Conversão de *string* para representação em virgula fixa
+   :caption: Conversão de texto para representação em virgula fixa
    
    
 **Exemplo**
 
-Função para converter a representação de um número real em binário com virgula na posição 5
-para uma representação em *string*, na base decimal com duas casas decimais.
+Função para converter a representação de um número real em binário com virgula na posição ``BIN_FRAC``
+para uma representação em texto, na base decimal com ``DEC_FRAC`` casas decimais.
 
 .. literalinclude:: ../../../code/values_expressions/float/calc_fixed.c
    :language: c
    :linenos:
-   :lines: 29-52
-   :caption: Conversão de virgula fixa para *string*
+   :lines: 29,35-55
+   :caption: Conversão de representação em virgula fixa para texto
 
 **Exercício**
 
 Completar o esboço de programa apresentado abaixo
 que realiza as quatro operações aritméticas básicas
-sobre números reais representados em binário com 5 casas fracionárias.
+sobre números reais representados em binário com ``BIN_FRC`` casas fracionárias.
 
 .. literalinclude:: ../../../code/values_expressions/float/calc_fixed.c
    :language: c
    :linenos:
-   :lines: 54,64-71,73-74,77-78,81-82,84-87
-   :caption: Conversão de virgula fixa para *string*
+   :lines: 59,69-76,78-79,82-83,86-87,89-92
+   :caption: Operações aritméticas em vigula fixa
 
 
 Vírgula flutuante (IEEE 754)
@@ -270,7 +272,7 @@ Vírgula flutuante (IEEE 754)
 
    Representação de número real em virgula flutuante (formato IEEE754)
 
-Os *bits* das posições 22 a 0 valem, respetivamente, os valores 2^{-1} a 2^{-23}.
+Os *bits* das posições 22 a 0 valem, respetivamente, os valores :math:`2^{-1}` a :math:`2^{-23}`.
 
 .. figure:: float2.svg
    :align: center
@@ -279,23 +281,23 @@ Os *bits* das posições 22 a 0 valem, respetivamente, os valores 2^{-1} a 2^{-2
    Visualização de número real em virgula flutuante (formato IEEE754)
 
 
-+-------+-------------+----------+------------------------------------------------+
-| Sinal | Expoente    | Mantissa | Valor                                          |
-+-------+-------------+----------+------------------------------------------------+
-| s     | 0 < e < 255 | m        | :math:`(-1)^s * 2^{e-127} * 1.m` (normalized)  |
-+-------+-------------+----------+------------------------------------------------+
-| s     | 0           | m != 0   | :math:`(-1)^s * 2^{-126} * 1.m` (unnormalized) |
-+-------+-------------+----------+------------------------------------------------+
-| 0     | 0           | 0        | zero                                           |
-+-------+-------------+----------+------------------------------------------------+
-| 1     | 0           | 0        | -zero                                          |
-+-------+-------------+----------+------------------------------------------------+
-| s     | 255         | m != 0   | NaN (Not a Number)                             |
-+-------+-------------+----------+------------------------------------------------+
-| 0     | 255         | 0        | +infinito                                      |
-+-------+-------------+----------+------------------------------------------------+
-| 1     | 255         | 0        | -infinito                                      |
-+-------+-------------+----------+------------------------------------------------+
++-------+-------------+----------+----------------------------------------------------+
+| Sinal | Expoente    | Mantissa | Valor                                              |
++-------+-------------+----------+----------------------------------------------------+
+| s     | 0 < e < 255 | m        | :math:`(-1)^s * 2^{e-127} * (1 + m)` (normalized)  |
++-------+-------------+----------+----------------------------------------------------+
+| s     | 0           | m != 0   | :math:`(-1)^s * 2^{-126} * (1 + m)` (unnormalized) |
++-------+-------------+----------+----------------------------------------------------+
+| 0     | 0           | 0        | zero                                               |
++-------+-------------+----------+----------------------------------------------------+
+| 1     | 0           | 0        | -zero                                              |
++-------+-------------+----------+----------------------------------------------------+
+| s     | 255         | m != 0   | NaN (Not a Number)                                 |
++-------+-------------+----------+----------------------------------------------------+
+| 0     | 255         | 0        | +infinito                                          |
++-------+-------------+----------+----------------------------------------------------+
+| 1     | 255         | 0        | -infinito                                          |
++-------+-------------+----------+----------------------------------------------------+
 
 **Exemplo**
 

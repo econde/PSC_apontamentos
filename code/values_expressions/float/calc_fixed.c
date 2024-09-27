@@ -13,7 +13,7 @@
 unsigned long string_to_real(char string[]) {
 	unsigned long value = 0;
 	int i;
-	for (i = 0; string[i] != '.'; ++i) {
+	for (i = 0; string[i] != ','; ++i) {
 		int digit = (string[i] - '0') << BIN_FRAC;
 		value = value * 10 + digit;
 	}
@@ -26,33 +26,38 @@ unsigned long string_to_real(char string[]) {
 	return value / fraction;
 }
 
-void real_to_string(unsigned long value, char buffer[], size_t buffer_size) {
+size_t real_to_string(unsigned long value, char buffer[], size_t buffer_size) {
 	if (value == 0) {
-		strncpy(buffer, "0.0", buffer_size);
-		return;
+		strncpy(buffer, "0,0", buffer_size);
+		buffer[buffer_size - 1] = '\0';
+		return strlen(buffer);
 	}
 	int i;
 	for (i = 0; i < DEC_FRAC; ++i)
 		value *= 10;
 	value >>= BIN_FRAC;
 
-	for (i = 0; (value > 0 || i < DEC_FRAC) && i < buffer_size - i; ++i) {
+	for (i = 0; (value > 0 || i < DEC_FRAC) && i < buffer_size; ++i) {
 		buffer[i] = value % 10 + '0';
 		value /= 10;
-		if (i == 1)
-			buffer[++i] = '.';
+		if (i == DEC_FRAC - 1)
+			buffer[++i] = ',';
 	}
 	buffer[i--] = 0;
 	/* inverter */
-	for (int j = 0; j < i; ++j, --i) {
-		char tmp = buffer[i];
-		buffer[i] = buffer[j];
-		buffer[j] = tmp;
+	char *p, *q;
+	for (p = buffer, q = buffer + i; p < q; ++p, --q) {
+		char tmp = *p;
+		*p = *q;
+		*q = tmp;
 	}
+	return i + 1;
 }
 
-int main(int argc, char *argv[]) {
+void tests();
 
+int main(int argc, char *argv[]) {
+	tests();
 	if (argc != 4) {
 		fprintf(stderr, "usage: %s <operand1> <operation> <operand2>\n", argv[0]);
 		exit(0);
@@ -84,4 +89,26 @@ int main(int argc, char *argv[]) {
 	char string_result[20];
 	real_to_string(result, string_result, sizeof string_result);
 	printf("%s\n", string_result);
+}
+
+void tests() {
+	printf("--------------------------------------------------------------------\n");
+	char buffer[20];
+	size_t result_size = real_to_string(0, buffer, sizeof buffer);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(0, buffer, 3);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(0, buffer, 2);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(0, buffer, 1);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(0, buffer, 0);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	unsigned long value = string_to_real("3,25");
+	result_size = real_to_string(value, buffer, 5);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(value, buffer, 4);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
+	result_size = real_to_string(value, buffer, 3);
+	printf("result_string = %s result_size = %zd\n", buffer, result_size);
 }

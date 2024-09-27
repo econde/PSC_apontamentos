@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="4cm" height="2cm" viewBox="-1 -1 73 29" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="48" y="0" width="12" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="6" y="9.29066">
+      <tspan x="6" y="9.29066">'a'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="42" y="9.05">
+      <tspan x="42" y="9.05">'d'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="30" y="9.05">
+      <tspan x="30" y="9.05">'c'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="18" y="9.05">
+      <tspan x="18" y="9.05">'b'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="54" y="9.05">
+      <tspan x="54" y="9.05">0</tspan>
+    </text>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="36" y="0" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="0" y="0" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="12" y="0" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="24" y="0" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="60" y="0" width="12" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="66" y="9.05">
+      <tspan x="66" y="9.05">0</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="46" y="26.05">
+      <tspan x="46" y="26.05">a[1]</tspan>
+    </text>
+    <g>
+      <path style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" d="M 38 24 C 28,24 21,20 21,10.1708"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="21,8.67082 22,10.6708 21,10.1708 20,10.6708 "/>
+    </g>
+  </g>
+</svg>

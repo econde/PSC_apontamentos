@@ -11,6 +11,8 @@ Apontamentos de PSC
    :caption: Contents:
 
    values_expressions/values.rst
+   array_struct_pointer/array_struct_pointer.rst
+   input_output/input_output.rst
 
 Indices and tables
 ==================

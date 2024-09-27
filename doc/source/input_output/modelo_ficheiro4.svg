@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="12cm" height="4cm" viewBox="19 19 239 69" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="20" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="28" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="36" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="44" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="52" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="60" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="68" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="76" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="84" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="92" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="100" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="108" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="116" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="124" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="132" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="140" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="148" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="156" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="164" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="172" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="180" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="188" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="196" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="204" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="212" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="220" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="228" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="236" y="20" width="8" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="244" y="20" width="8" height="8" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:italic;font-weight:normal" x="44" y="78.175">
+      <tspan x="44" y="78.175">file pointer</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="48" y="44.05">
+      <tspan x="48" y="44.05">(antes de</tspan>
+      <tspan x="48" y="51.1056">qualquer leitura)</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="148" y="46.05">
+      <tspan x="148" y="46.05">(depois da leitura</tspan>
+      <tspan x="148" y="53.1056">de 12 posições)</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="224" y="46.05">
+      <tspan x="224" y="46.05">(depois de lido</tspan>
+      <tspan x="224" y="53.1056">todo o conteúdo)</tspan>
+    </text>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="20" y="64" width="20" height="8" rx="0" ry="0"/>
+    <g>
+      <path style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" d="M 32 68 C 16,56 24,48 24,34.5"/>
+      <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" d="M 32 68 C 31.7,68.4 31,68.5 30.6,68.2 C 30.2,67.9 30.1,67.2 30.4,66.8 C 30.7,66.4 31.4,66.3 31.8,66.6 C 32.2,66.9 32.3,67.6 32,68z"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="25,34.5 24,32.5 23,34.5 "/>
+    </g>
+    <g>
+      <path style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke-dasharray: 2 0.8 0.4 0.8; stroke: #000000" d="M 36 68 C 80,68 260,80 256.208,34.4914"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="257.204,34.4083 256.042,32.4983 255.211,34.5744 "/>
+    </g>
+    <g>
+      <path style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke-dasharray: 2; stroke: #000000" d="M 32 68 C 76,68 124,60 124,34.5"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="125,34.5 124,32.5 123,34.5 "/>
+    </g>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="20" y="56" width="20" height="8" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="20" y="72" width="20" height="8" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="30" y="86.05">
+      <tspan x="30" y="86.05">FILE</tspan>
+    </text>
+  </g>
+</svg>

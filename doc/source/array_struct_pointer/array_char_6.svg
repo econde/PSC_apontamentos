@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="11cm" height="5cm" viewBox="-12 -5 215 93" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="38" y="-4" width="22" height="80" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="94" y="60" width="48" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="69.05">
+      <tspan x="100" y="69.05">'g' </tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="136" y="69.05">
+      <tspan x="136" y="69.05">0</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="124" y="69.05">
+      <tspan x="124" y="69.05">'c'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="112" y="69.05">
+      <tspan x="112" y="69.05">'c'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="38" y1="36" x2="60" y2="36"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="38" y1="56" x2="60" y2="56"/>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="48" y1="26" x2="81.5" y2="26"/>
+      <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" d="M 48 26 C 48,25.5 48.5,25 49,25 C 49.5,25 50,25.5 50,26 C 50,26.5 49.5,27 49,27 C 48.5,27 48,26.5 48,26z"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="81.5,29 87.5,26 81.5,23 "/>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="48" y1="46" x2="81.5" y2="46"/>
+      <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" d="M 48 46 C 48,45.5 48.5,45 49,45 C 49.5,45 50,45.5 50,46 C 50,46.5 49.5,47 49,47 C 48.5,47 48,46.5 48,46z"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="81.5,49 87.5,46 81.5,43 "/>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="48" y1="66" x2="81.5" y2="66"/>
+      <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" d="M 48 66 C 48,65.5 48.5,65 49,65 C 49.5,65 50,65.5 50,66 C 50,66.5 49.5,67 49,67 C 48.5,67 48,66.5 48,66z"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="81.5,69 87.5,66 81.5,63 "/>
+    </g>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="106" y1="62" x2="106" y2="72"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="118" y1="60" x2="118" y2="72"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="130" y1="60" x2="130" y2="72"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="94" y="40" width="108" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="49.05">
+      <tspan x="100" y="49.05">'m' </tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="196" y="49.05">
+      <tspan x="196" y="49.05">0</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="124" y="49.05">
+      <tspan x="124" y="49.05">'p'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="112" y="49.05">
+      <tspan x="112" y="49.05">'y'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="106" y1="40" x2="106" y2="52"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="130" y1="40" x2="130" y2="52"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="118" y1="40" x2="118" y2="52"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="136" y="49.05">
+      <tspan x="136" y="49.05">'r'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="148" y="49.05">
+      <tspan x="148" y="49.05">'o'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="160" y="49.05">
+      <tspan x="160" y="49.05">'g'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="142" y1="40" x2="142" y2="52"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="154" y1="40" x2="154" y2="52"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="166" y1="42" x2="166" y2="52"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="178" y1="40" x2="178" y2="52"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="172" y="49.05">
+      <tspan x="172" y="49.05">'.'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="184" y="49.05">
+      <tspan x="184" y="49.05">'c'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="190" y1="42" x2="190" y2="52"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="94" y="20" width="36" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="29.05">
+      <tspan x="100" y="29.05">'-' </tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="126" y="29.05">
+      <tspan x="126" y="29.05">0</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="112" y="29.05">
+      <tspan x="112" y="29.05">'g'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="106" y1="20" x2="106" y2="32"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="118" y1="20" x2="118" y2="32"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="94" y="0" width="84.3984" height="12" rx="0" ry="0"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="9.05">
+      <tspan x="100" y="9.05">'m' </tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="172" y="9.05">
+      <tspan x="172" y="9.05">0</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="124" y="9.05">
+      <tspan x="124" y="9.05">'p'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="112" y="9.05">
+      <tspan x="112" y="9.05">'y'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="106" y1="0" x2="106" y2="12"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="130" y1="0" x2="130" y2="12"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="118" y1="0" x2="118" y2="12"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="136.199" y="9.05">
+      <tspan x="136.199" y="9.05">'r'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="148" y="9.05">
+      <tspan x="148" y="9.05">'o'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="160" y="9.05">
+      <tspan x="160" y="9.05">'g'</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="142" y1="0" x2="142" y2="12"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="154" y1="0" x2="154" y2="12"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="166" y1="0" x2="166" y2="12"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="38" y1="16" x2="60" y2="16"/>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="48" y1="6" x2="81.5" y2="6"/>
+      <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" d="M 48 6 C 48,5.5 48.5,5 49,5 C 49.5,5 50,5.5 50,6 C 50,6.5 49.5,7 49,7 C 48.5,7 48,6.5 48,6z"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="81.5,9 87.5,6 81.5,3 "/>
+    </g>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="38" y="86">
+      <tspan x="38" y="86">argv </tspan>
+    </text>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" d="M 34 -4 C 22,-4 32,36 24,36"/>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" d="M 32 76 C 24,76 32,36 24,36"/>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-12" y="38">
+      <tspan x="-12" y="38">argc = 4 </tspan>
+    </text>
+  </g>
+</svg>
