@@ -150,8 +150,8 @@ Especificações de conversão das funções da família  **scanf**:
 %*<width><lenght><conversion>
 
 ============ =============================================
-*            interpreta o campo sem afetar a variável
-with         dimensão máxima do campo
+\*            interpreta o campo sem afetar a variável
+width        dimensão máxima do campo
 length       **h** short, **l** long, **L** long double
 conversion   b, d, i, o, x, u, c, s, a, f, e, g
 ============ =============================================
@@ -312,12 +312,20 @@ A função ``strerror`` traduz um código de erro para texto descritivo. ::
 
    char * strerror(int errnum);
 
+**Exemplo**
 
+Programa para mostrar no terminal o conteúdo de um ficheiro em hexadecimal
+(semelhante a ``$ hexdump -C <file>``).
+
+.. literalinclude:: ../../../code/input_output/hexdump.c
+   :language: c
+   :linenos:
+   
 Exercícios
 ----------
    1. Fazer uma programa para copiar ficheiros. Primeira versão - caractere a caractere; segunda versão - bloco a bloco.
    2. Fazer um programa para concatenar ficheiros.
-   3. Fazer um programa para imprimir o conteúdo de um ficheiro em hexadecimal (semelhante a ``$ hexdump -C <file>``).
+   3. Fazer um programa para ordenar um ficheiro de texto pela ordem alfabética da linhas.
     
 Referências
 -----------

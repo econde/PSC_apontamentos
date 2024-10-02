@@ -395,24 +395,282 @@ Uma variável de ambiente criada num dado processo é propagada para os processo
 descendentes, não afeta o sistema na globalidade.
 
 
-Structs
-=======
+*Struct*
+========
 
-Ponteiros e structs
+O tipo **struct** agrega variáveis de tipos diferentes.
+
+Declaração do tipo: ::
+
+   struct person {
+   	char name[100];
+   	int age;
+   	int weight;
+   	float height;
+   };
+
+Definição de variável do tipo *struct*: ::
+
+   struct person user;
+
+Para simplificar a escrita pode-se usar: ::
+
+   typedef struct person Person;
+
+e escrever ``Person`` em vez de ``struct person``: ::
+
+   Person user;
+
+Acesso a membro da **struct** (<nome da struct>.<membro>):
+
+	user.age;
+
+As *struct* podem ser copiadas com o operador afetação: ::
+
+   struct person a, b;
+
+   a = b;
+
+A passagem de *struct* como argumento de função é feita por valor. ::
+
+   int bmi(struct person p) {
+   	return p.weight / (p.weight * p.weight);
+   }
+
+Uma *struct* pode ser retornada como valor de uma função: ::
+
+   struct person new_person(char n[], int a, int w, int h) {
+   	struct person temp;
+   	strcpy(temp.name, n);
+   	temp.age = a;
+   	temp.height = h;
+   	temp.weight = w;
+   	return temp;
+   }
+   
+Inicialização na definição de variável do tipo *struct*: ::
+
+   struct person user1 = {“António”, 53, 80, 1.76};
+   struct person user2 = {
+   	.name = “Joaquim”, 
+   	.height = 1.76
+   }
+   
+Os campos não mencionados são inicializados com zero.
+
+Ponteiros para *struct*
+=======================
+
+Se for necessário passar uma *struct* como argumento de função,
+deve-se considerar a passagem por ponteiro. ::
+
+   int bmi(struct person *p) {
+   	return (*p).weight / ((*p).height * (*p).height);
+   }
+   
+A linguagem C dispões de um operador alternativo para acesso
+ao membro de uma **struct** baseado em ponteiro: **->** ::
+
+   return p->weight / (p->height * p->height);
+
+Os operadores **.** e **->**, em conjunto com **()** e **[]**,
+são os mais prioritários.
+
+Exemplos de acesso a campos de *struct*: ::
+
+   struct person *p;
+  
+================ =====================================================================================
+``++p->age``     incrementa o membro ``age``.
+``(p++)->age``   incrementa ``p`` depois de aceder a ``age``. Só faz sentido num *array* de pessoas.
+``*p->name``     dá acesso ao primeiro caracter de ``name``.
+``*p++->name``   incrementa ``p`` depois de aceder ao primeiro caractere de ``name``.
+``(*p->name)++`` incrementa o código do primeiro caracter de ``name``.
+================ =====================================================================================
+
+**Exercícios**
+
+   1. Fazer um programa para ordenar um *array* de ``struct person`` pela ordem alfabética dos nomes.
+   2. Fazer um programa para ordenar um *array* de ponteiros para ``struct person`` pelas idades.
+
+Alojamento de *struct* em memória
+=================================
+
+   * Os membros de uma **struct** são dispostos em memória
+     seguindo as regras de alinhamento do tipo a que pertencem,
+     mesmo que para isso seja necessário inutilizar posições de memória
+     entre campos consecutivos.
+   * O endereço de início da **struct** é alinhado no maior alinhamento necessário
+     a um dos seus campos. 
+   * A dimensão de uma *struct* é múltipla do seu alinhamento.
+
+Considere-se a seguinte definição da variável **x**: ::
+
+   struct y {
+   	char a;
+   	int b;
+   	short c;
+   } x;
+  
+Num processador a 32 ou 64 bits, com compilador GNU,
+para alinhar o campo ``b``, é necessário avançar três posições de memória.
+A dimensão total desta **struct** é de 12 *bytes*.
+
+.. figure:: struct_1.svg
+   :align: center
+   :scale: 120
+
+A dimensão de uma *struct* depende da ordem e do tipo dos campos.
+Considerando a definição alternativa da variável **x**: ::
+
+   struct {
+   	char a;
+   	short c;
+   	int b;
+   } x;
+
+.. figure:: struct_2.svg
+   :align: center
+   :scale: 120
+
+Na arquitetura Intel é possível alojar variáveis desalinhadas.
+Um acesso desalinhado consome duas operações de acesso à memória.
+Um acesso alinhado consome apenas uma operação de acesso à memória.
+
+Na arquitetura ARM, por definição, acessos desalinhados são interditos.
+A implementação *hardware* não contempla essa operação.
+Em algumas implementações, se isso acontecer, o processador interrompe o programa,
+noutras o resultado é indefinido.
+
+**Exercícios**
+
+   1. Desenhar a ocupação de memória para um *array* de duas *struct* do tipo ``struct y``.
+   2. Tentar desenhar a ocupação de memória para um *array* de duas *struct* do tipo ``struct y``,
+      colocando o campo ``a`` da *struct* da primeira posição do *array*,
+      num endereço ímpar e mantendo o critério de alinhamento para todos os campos. 
+    
+*Array* de *struct*
 ===================
 
-Alojamento de struct em memória
-===============================
+**Exemplo**
 
-Array de struct
-===============
+Programa para contar as palavras de um texto e imprimir as dez mais frequentes.
 
-Array de ponteiros para struct
-==============================
+Registar a informação de cada palavra numa *struct* com dois campos,
+um *array* de caracteres para armazenar a palavra
+e um campo do tipo inteiro para acumular a contagem.
 
-Structs com cmapos baseados em bits
-===================================
+Implementar a coleção de palavras num *array* de *struct* desse tipo.
 
-Union
-=====
+.. literalinclude:: ../../../code/array_struct_pointer/word_count/word_count.c
+   :language: c
+   :linenos:
+   :lines: 1-40, 67-76
+
+*Array* de ponteiros para *struct*
+==================================
+
+**Exercício**
+Realizar uma versão do programa anterior
+em que a coleção de palavras é suportada num *array* de ponteiros para *struct*.
+
+Utilizar instrumentação de medida de tempo de execução em ambas as versões
+e comparar o desempenho. 
+
+*Struct* com campos baseados em *bits*
+======================================
+
+Justificação:
+
+   * casos em que se pretenda reduzir a memória ocupada;
+   * permite acesso a *bits* de forma simplificada.
+
+**Exemplo 1**
+
+Representação de uma data de forma compactada. ::
+
+   struct date {
+   	short day: 5;
+   	short month: 4;
+   	short year: 7;
+   };
+
+   struct date date_pack(int year, int month, int day) {
+   	struct date tmp = {year – 2000, month, day };
+   	return tmp;
+   }
+
+sizeof (struct date) é igual a dois, o mesmo que sizeof (short)
+
+**Exemplo 2**
+
+Acesso a registo de periférico mapeado no espaço de memória: ::
+
+   struct register_status {
+   	char counter_enable:1;
+   	char counter_reset: 1;
+   };
+
+   struct register_status *status = 0xe0008004;
+
+   status->counter_enable = 1;
+
+Como a unidade mínima de endereçamento no acesso à memória é o *byte*,
+para afetar um número de *bits* inferior sem modificar os restantes
+é necessário ler, alterar os *bits* em causa e voltar a escrever.
+Resultando em dois acessos à memória, um de leitura e um de escrita.
+
+Apesar da aparentemente vantagem em relação à utilização de operadores lógicos bit-a-bit,
+nem sempre é conveniente a sua utilização:
+
+   1. Se, no acesso a um registo de periférico, este for só de escrita a operação de leitura é inútil.
+   2. Se o operação de leitura sobre um registo de periférico provocar a alteração de estado do periférico, ela é certamente indesejada.
+    
+*Union*
+=======
+
+Uma *union* é uma variável que pode armazenar, em tempos diferentes,
+valores de diferentes tipo e tamanhos.
+
+Através de uma *union* é possível encarar um dado conteúdo de memória
+na perspectiva de diferentes tipos.
+
+**Exemplo 1** ::
+
+   struct symbol {
+   	char *name;
+   	int flags;
+   	union {
+   		int value_int;
+   		float value_float;
+   		char *value_string;
+   	};
+   };
+
+Os campos ``value_int``, ``value_float`` e ``value_string`` ocupam as mesmas posições da memória.
+Apenas um deles tem significado num dado momento.
+O campo ``flags`` pode servir para identificar o significado atual.
+
+
+**Exemplo 2**
+
+Imprimir em binário a respresentação interna de um *float*.
+
+::
+
+   typedef union {
+   	unsigned i;
+   	struct {
+   		unsigned mantissa: 23;
+   		unsigned exponent: 8;
+   		unsigned signal: 1;
+   	};
+   	float f;
+   } Float;
+
+   ...
+   Float real = {.f = -45.1};
+
+   printf("%b %08b %023b\n", real.signal, real.exponent, real.mantissa);
+   ...
 
