@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="13cm" height="4cm" viewBox="-33 -18 242 75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Background">
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="28" y="-4">
+      <tspan x="28" y="-4"></tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="104" y1="-4" x2="104" y2="-16"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="24" y1="-4" x2="24" y2="-16"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="104" y1="56" x2="104" y2="44"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="24" y1="56" x2="24" y2="44"/>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="128" y="20" width="80" height="12" rx="0" ry="0"/>
+      <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="168" y="27.9194">
+        <tspan x="168" y="27.9194">0x7fffffffdd50</tspan>
+      </text>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x1="128" y1="26" x2="112.5" y2="26"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" fill-rule="evenodd" points="112.5,24 104.5,26 112.5,28 "/>
+    </g>
+    <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="20" y="4.15">
+      <tspan x="20" y="4.15">0x7fffffffdd60</tspan>
+    </text>
+    <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="170" y="41.8">
+      <tspan x="170" y="41.8">RSP</tspan>
+    </text>
+    <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="20" y="16.15">
+      <tspan x="20" y="16.15">0x7fffffffdd58</tspan>
+    </text>
+    <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="20" y="28.15">
+      <tspan x="20" y="28.15">0x7fffffffdd50</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="144" y="80">
+      <tspan x="144" y="80"></tspan>
+    </text>
+    <g>
+      <rect style="fill: #e6e6fa; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="24" y="20" width="80" height="12" rx="0" ry="0"/>
+      <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="27.9194">
+        <tspan x="64" y="27.9194">rip</tspan>
+      </text>
+    </g>
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="24" y="32" width="80" height="12" rx="0" ry="0"/>
+    <g>
+      <rect style="fill: #e6e6fa; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="24" y="8" width="80" height="12" rx="0" ry="0"/>
+      <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="15.9194">
+        <tspan x="64" y="15.9194">x4</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e6e6fa; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="24" y="-4" width="80" height="12" rx="0" ry="0"/>
+      <text font-size="6.20889" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="64" y="3.91944">
+        <tspan x="64" y="3.91944">&amp;x4</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

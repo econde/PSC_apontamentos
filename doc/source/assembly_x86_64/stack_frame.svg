@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="5cm" height="6cm" viewBox="-1 -1 89 119" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x="0" y="34" width="88" height="24" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="44" y="44.4222">
+      <tspan x="44" y="44.4222">Zona de salvamento</tspan>
+      <tspan x="44" y="51.4778">de conteúdo de registos</tspan>
+    </text>
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x="0" y="58" width="88" height="24" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="44" y="71.95">
+      <tspan x="44" y="71.95">Variáveis locais</tspan>
+    </text>
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x="0" y="82" width="88" height="24" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="44" y="92.4222">
+      <tspan x="44" y="92.4222">Argumentos de chamada</tspan>
+      <tspan x="44" y="99.4778">a outras funções</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="0" y1="10" x2="0" y2="0"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="88" y1="10" x2="88" y2="0"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="0" y1="118" x2="0" y2="106"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="88" y1="118" x2="88" y2="106"/>
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x="0" y="10" width="88" height="24" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="44" y="23.8675">
+      <tspan x="44" y="23.8675">Endereço de retorno</tspan>
+    </text>
+  </g>
+</svg>

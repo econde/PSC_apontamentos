@@ -6,9 +6,6 @@ Array
 
 *Arrays* são sequências de valores do mesmo tipo, dispostas em posições contiguas da memória.
 
-*Array* unidimensional
-----------------------
-
 Sintaxe de definição de *array* unidimensional: ::
 
 	type identifier [constant-expression]; 
@@ -57,9 +54,6 @@ Pode-se contudo, realizar a afetação posição a posição.
 
 é válido, embora não seja a solução adequada para copiar um *array* extenso.
 
-
-*Array* multidimensional
-------------------------
 
 Ponteiro
 ========
@@ -243,7 +237,7 @@ Array bidimensional
    +-------------------------------------------+-----------------------------+
    | ``char a[6] = “abcd”;``                   | .. image:: array_char.svg   |
    +-------------------------------------------+-----------------------------+
-   | ``char a[][6] = {“luis”, “rui”, “ana”};`` | .. image:: array_char_2.svg | 
+   | ``char a[][5] = {“luis”, “rui”, “ana”};`` | .. image:: array_char_2.svg | 
    +-------------------------------------------+-----------------------------+
 
 
@@ -349,7 +343,7 @@ Invocações possíveis: ::
 
    $ program -d argument1 -c argument2 -a aaa
  
-``argument1`` e ``argument2`` são argumentos do programa e ``aaa`` e ``ccc`` são argumentos as opções.
+``argument1`` e ``argument2`` são argumentos do programa e ``aaa`` e ``ccc`` são argumentos das opções.
 
 
 .. literalinclude:: ../../../code/application/getopt.c
@@ -434,7 +428,7 @@ As *struct* podem ser copiadas com o operador afetação: ::
 A passagem de *struct* como argumento de função é feita por valor. ::
 
    int bmi(struct person p) {
-   	return p.weight / (p.weight * p.weight);
+   	return p.weight / (p.height * p.height);
    }
 
 Uma *struct* pode ser retornada como valor de uma função: ::
@@ -458,8 +452,8 @@ Inicialização na definição de variável do tipo *struct*: ::
    
 Os campos não mencionados são inicializados com zero.
 
-Ponteiros para *struct*
-=======================
+Ponteiro para *struct*
+======================
 
 Se for necessário passar uma *struct* como argumento de função,
 deve-se considerar a passagem por ponteiro. ::

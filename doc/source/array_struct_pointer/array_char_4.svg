@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="5cm" height="4cm" viewBox="19 15 92 62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="5cm" height="4cm" viewBox="19 15 92 61" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Background"/>
   <g id="Background">
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="62" y="20" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="74" y="20" width="12" height="12" rx="0" ry="0"/>
+    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="86" y="20" width="12" height="12" rx="0" ry="0"/>
     <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="62" y="40" width="12" height="12" rx="0" ry="0"/>
     <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="86" y="40" width="12" height="12" rx="0" ry="0"/>
     <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="50" y="40" width="12" height="12" rx="0" ry="0"/>
@@ -41,23 +45,16 @@
     <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="56" y="29.05">
       <tspan x="56" y="29.05">'a'</tspan>
     </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="80" y="28.915">
+      <tspan x="80" y="28.915">'a'</tspan>
+    </text>
+    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="68" y="28.915">
+      <tspan x="68" y="28.915">'n'</tspan>
+    </text>
     <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="92" y="29.05">
-      <tspan x="92" y="29.05">'d'</tspan>
+      <tspan x="92" y="29.05">0</tspan>
     </text>
-    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="80" y="29.05">
-      <tspan x="80" y="29.05">'c'</tspan>
-    </text>
-    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="68" y="29.05">
-      <tspan x="68" y="29.05">'b'</tspan>
-    </text>
-    <text font-size="7.90222" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="104" y="29.05">
-      <tspan x="104" y="29.05">0</tspan>
-    </text>
-    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="86" y="20" width="12" height="12" rx="0" ry="0"/>
     <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="50" y="20" width="12" height="12" rx="0" ry="0"/>
-    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="62" y="20" width="12" height="12" rx="0" ry="0"/>
-    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="74" y="20" width="12" height="12" rx="0" ry="0"/>
-    <rect style="fill: none; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="98" y="20" width="12" height="12" rx="0" ry="0"/>
     <g>
       <path style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" d="M 32 26 C 44,26 35.5078,26 47.337,26"/>
       <path style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" d="M 32 26 C 32,25.5 32.5,25 33,25 C 33.5,25 34,25.5 34,26 C 34,26.5 33.5,27 33,27 C 32.5,27 32,26.5 32,26z"/>
