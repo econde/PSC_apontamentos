@@ -323,6 +323,7 @@ para auxiliar na programação com opções curtas
    int getopt(int argc, char *const argv[], const char *optstring);
    extern char *optarg;
    extern int opterr, optind, optopt;
+
 ========== =============================================
 ``optarg`` ponteiro para o argumento da opção
 ``optind`` índice da opção corrente no *array* ``argv``
