@@ -14,7 +14,8 @@ Apontamentos de PSC
    array_struct_pointer/array_struct_pointer.rst
    input_output/input_output.rst
    assembly_x86_64/assembly_x86_64.rst
-
+   data_structures/data_structures.rst
+   
 Indices and tables
 ==================
 
