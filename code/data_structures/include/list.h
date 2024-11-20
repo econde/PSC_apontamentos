@@ -1,10 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 
-struct list_node {
-	struct list_node *next, *prev;
-	void *data;
-};
+struct list_node;
 
 /*
  *  Criar uma lista nova

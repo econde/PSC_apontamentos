@@ -1,6 +1,11 @@
 #include <stdlib.h>
 #include "tree.h"
 
+struct tree_node {
+	struct tree_node *left, *right;
+	void *data;
+};
+
 void tree_destroy(struct tree_node *node) {
 	if (NULL == node)
 		return;
@@ -17,9 +22,9 @@ struct tree_node *tree_search(struct tree_node *node, const void *key,
 	if (cmp_result == 0)
 		return node;
 	if (cmp_result < 0)
-		return tree_search(node->right, data, cmp);
+		return tree_search(node->right, key, compare);
 	else
-		return tree_search(node->left, data, cmp);
+		return tree_search(node->left, key, compare);
 }
 
 struct tree_node *tree_insert(struct tree_node *root, void *data,
@@ -34,9 +39,9 @@ struct tree_node *tree_insert(struct tree_node *root, void *data,
 	}
 	int cmp_result = compare(root->data, data);
 	if (cmp_result < 0)
-		root->right = tree_insert(root->right, data, cmp);
+		root->right = tree_insert(root->right, data, compare);
 	else if (cmp_result > 0)
-		root->left = tree_insert(root->left, data, cmp);
+		root->left = tree_insert(root->left, data, compare);
 	return root;
 }
 

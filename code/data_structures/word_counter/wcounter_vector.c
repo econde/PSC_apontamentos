@@ -5,24 +5,25 @@
 #include <errno.h>
 #include "vector.h"
 
-char *readword(FILE *file, char *separators);
+char *read_word(FILE *file, char *separators);
+
 unsigned int get_time();
+
+static char *separators = " .,;!?\t\n\f:-\"\'(){}[]*=%><#+-&";
+
+static inline int min(int a, int b) {
+	return a < b ? a : b;
+}
 
 struct word {
 	char *text;
 	int counter;
 };
 
-char *separators = " .,;!?\t\n\f:-\"\'(){}[]*=%><#+-&";
-
-static inline int min(int a, int b) {
-	return a < b ? a : b;
-}
-
 struct vector *words;
 
 int word_cmp_text(const void *a, const void *b) {
-	return strcmp(((struct word *)a)->text, (const char *)b);
+	return strcmp((const char *)a, ((struct word *)b)->text);
 }
 
 int word_cmp_count(const void *a, const void *b) {
@@ -37,7 +38,7 @@ void free_word(void *data, void *) {
 	free(((struct word *)data)->text);
 }
 
-void words_print(struct vector *words, size_t size) {;
+void print_top_ten(struct vector *words, size_t size) {;
 	for (size_t i = 0; i < size; ++i) {
 		struct word *w = vector_at(words, i);
 		printf("%s - %d\n", w->text, w->counter);
@@ -54,7 +55,7 @@ int main(int argc, char *argv[]){
 	words = vector_create(sizeof (struct word), 2);
 	long initial = get_time();
 	char *word_text;
-	while ((word_text = readword(fd, separators)) != NULL) {
+	while ((word_text = read_word(fd, separators)) != NULL) {
 		nwords++;
 		size_t index;
 		if (vector_sorted_search(words, word_text, word_cmp_text, &index)) {
@@ -74,10 +75,9 @@ int main(int argc, char *argv[]){
 	long duration = get_time() - initial;
 	fclose(fd);
 	printf("Total de palavras = %d; Palavras diferentes = %zd Time = %ld\n",
-	       nwords, vector_size(words), duration);
+			nwords, vector_size(words), duration);
 	vector_sort(words, word_cmp_count_decrease);
-	words_print(words, min(10, vector_size(words)));
+	print_top_ten(words, min(10, vector_size(words)));
 	vector_foreach(words, free_word, NULL);
 	vector_destroy(words);
 }
-

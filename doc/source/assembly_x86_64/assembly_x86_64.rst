@@ -19,11 +19,11 @@ Para valores operados em memória as instruções aceitam um indicador, em sufix
 **q** *quad word*   64 *bits*
 ===== ============= ==========
 
-Existem instruções que extendem a representação
+Existem instruções que estendem a representação
 num número inferior de *bits* para um número superior de *bits*.
 
 +-----------------------+-------------------------------+-----------------------------------------------------------------+
-| movs\-\- *src*, *dst* | extensão com o *bit* de sinal | os tracinhos são substituidos pelos indicadores acima           |
+| movs\-\- *src*, *dst* | extensão com o *bit* de sinal | os tracinhos são substituídos pelos indicadores acima           |
 +-----------------------+-------------------------------+                                                                 | 
 | movz\-\- *src*, *dst* | extensão com o valor zero     | o primeiro indica a dimensão da origem e o segundo a do destino | 
 +-----------------------+-------------------------------+-----------------------------------------------------------------+
@@ -199,7 +199,7 @@ em último lugar, a instrução **ret**.
 Esta instrução desempilha para o registo RIP, o endereço empilhado pela última instrução **call**,
 provocando o regresso à função chamadora.
 
-A instrução **ret** é quivalente a **pop rip**
+A instrução **ret** é equivalente a **pop rip**
 
 Função sem parâmetros
 .....................
@@ -554,7 +554,7 @@ A instrução ``add $24, %rsp`` reposiciona RSP no endereço inicial.
 Alojamento de *array* local de dimensão variável em *stack*. (Sem proteção de *stack clash*.)
 
 Consideremos a função ``get_year`` que extrai a componente ano, na forma de inteiro,
-de uma data representada numa *string* com o formato “2020-9-3”.
+de uma data representada numa *string* com o formato "2020-9-3".
 
 +---------------------------------------------------------------------------+------------------------------------------------------------------------------+
 | .. literalinclude:: ../../../code/assembly_x86_64/stack_frame/getyear.c   | .. literalinclude:: ../../../code/assembly_x86_64/stack_frame/getyear_asm.s  |
@@ -570,7 +570,7 @@ Na linha 14 e 15 essa dimensão em EAX é arredondada por excesso para um valor 
 ((EAX + 15)  / 16)  * 16 ( o sinal / representa divisão inteira).
 
 Na linha 16 esse valor é subtraído a RSP consumando a reserva de espaço de memória para o array local buffer.
-No final da função, RSP é restabelecido com o valor de RBP – linha 26. Sendo uma solução simples para de reajuste do RSP e libertação do espaço de memória reservado.
+No final da função, RSP é restabelecido com o valor de RBP -- linha 26. Sendo uma solução simples para de reajuste do RSP e libertação do espaço de memória reservado.
 Nas circunstâncias em que o espaço de memória a reservar em stack é variável, o gcc por omissão gera código de mitigação do efeito stack clash. O código apresentado acima foi gerado pelo gcc sob o efeito da opção -fno-stack-clash-protection.
 
 Passagem de argumentos em *stack*
@@ -598,7 +598,7 @@ O argumento do parâmetro mais à esquerda é o que fica no topo do *stack*.
 Na linha 6 empilha-se o oitavo argumento -- o ponteiro para ``x4``.
 Na linha 8 empilha-se o sétimo argumento -- o valor de ``x4``.
 Note-se que apesar de ser do tipo ``char`` a passagem é feita numa palavra de 64 *bits*.
-Entre as linhas 9 e 14 procede-se à passagem em registto dos restantes seis argumentos.
+Entre as linhas 9 e 14 procede-se à passagem em registo dos restantes seis argumentos.
 
 A convenção de chamada a funções define que na altura da execução da instrução ``call``
 o registo RSP deve estar alinhado num endereço múltiplo de 16.
@@ -724,7 +724,7 @@ Geração do executável: ::
 
 O **gcc** dispõe de um meio, não eficaz, de deteção da ocorrência de *buffer overflow*.
 À entrada na função é posicionada uma marcação no limite da *stack frame*;
-à saída da função verifica-se se a mercação foi corrompida.
+à saída da função verifica-se se a marcação foi corrompida.
 Esta marcação é designada por \"canário\".
 
 Esta funcionalidade é ativada/desativada através das opções seguintes.

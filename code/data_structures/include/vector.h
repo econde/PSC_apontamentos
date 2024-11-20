@@ -1,10 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-struct vector {
-	void *buffer;
-	size_t element_size, current_size, max_size, chunk_size;
-};
+struct vector;
 
 struct vector *vector_create(size_t element_size, size_t chunk_size);
 

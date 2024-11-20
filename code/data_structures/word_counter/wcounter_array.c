@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-char *readword(FILE *file, const char *separators);
+char *read_word(FILE *file, const char *separators);
+
 unsigned int get_time();
 
 #define	ARRAY_SIZE(a)	(sizeof a / sizeof a[0])
 
 char *separators = " .,;!?\t\n\f:-\"\'(){}[]*=%><#+-&";
-
 
 struct word {
 	char *text;
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 	unsigned initial = get_time();
 	char *word;
 	int nwords = 0;
-	while ((word = readword(fd, separators)) != NULL) {
+	while ((word = read_word(fd, separators)) != NULL) {
 		nwords++;
 		int i;
 		if (words_search(word, &i))

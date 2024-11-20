@@ -15,7 +15,7 @@ static int is_separator(const char *separators, char c) {
 	return strchr(separators, c) != NULL;
 }
 
-char *readword(FILE *file, const char *separators) {
+char *read_word(FILE *file, const char *separators) {
 	int index = 0;
 	if (buffer_word_ptr == NULL) {
 		buffer_word_ptr = malloc(BUFFER_WORD_CHUNK);

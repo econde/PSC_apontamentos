@@ -6,13 +6,9 @@
 
 #include "list.h"
 
-char *wordread(FILE *file, char *separators);
+char *read_word(FILE *file, char *separators);
 
-unsigned int get_time() {
-	struct timespec ts;
-	clock_gettime(CLOCK_MONOTONIC, &ts);
-	return ts.tv_sec * 1000 + (ts.tv_nsec / 1000000);
-}
+unsigned int get_time();
 
 char *separators = " .,;!?\t\n\f:-\"\'(){}[]*=%><#+-&";
 
@@ -21,13 +17,13 @@ typedef struct Word {
 	int counter;
 } Word;
 
-List_node *words;
+struct list_node *words;
 
-int word_cmp(const void *data, const void *word_text) {
+bool word_cmp(const void *data, const void *word_text) {
 	return strcmp(((Word*)data)->text, (char *)word_text) == 0;
 }
 
-void free_word(void *data) {
+void free_word(void *data, void *) {
 	free(((Word*)data)->text);
 	free((void *)data);
 }
@@ -48,11 +44,12 @@ int main(int argc, char *argv[]) {
 
 	long initial = get_time();
 	char *word_text;
-	while ((word_text = wordread(fd, separators)) != NULL) {
+	while ((word_text = read_word(fd, separators)) != NULL) {
 		nwords++;
-		List_node *node = list_search_backward(words, word_cmp, word_text);
+		struct list_node *node = list_search(words, word_cmp, word_text);
 		if (node != NULL) {
-			((Word *)node->data)->counter++;
+			Word *word = list_get_data(node);
+			word->counter++;
 		}
 		else {
 			Word *new_word = malloc(sizeof *new_word);
@@ -77,6 +74,6 @@ int main(int argc, char *argv[]) {
 	"Palavras diferentes = %ld Time = %ld\n",
 		nwords, list_size(words), duration);
 	fclose(fd);
-	list_foreach(words, free_word);
+	list_foreach(words, free_word, NULL);
 	list_destroy(words);
 }

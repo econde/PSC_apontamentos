@@ -4,7 +4,13 @@
 
 #include "vector.h"
 
-struct vector *vector_create(size_t element_size, size_t chunk_size) {
+struct vector {
+	void *buffer;
+	size_t element_size, current_size, max_size, chunk_size;
+};
+
+struct vector *vector_create(size_t element_size, size_t chunk_size)
+{
 	struct vector *vector = malloc(sizeof *vector);
 	if (NULL == vector)
 		return NULL;
@@ -20,7 +26,8 @@ struct vector *vector_create(size_t element_size, size_t chunk_size) {
 	return vector;
 }
 
-void vector_destroy(struct vector *vector) {
+void vector_destroy(struct vector *vector)
+{
 	free(vector->buffer);
 	free(vector);
 }
@@ -30,7 +37,8 @@ void vector_destroy(struct vector *vector) {
  *	devolve através de index a posição onde encontrou ou deveria encontrar
  */
 bool vector_sorted_search(struct vector *vector, void *key,
-	                      int (*compare)(const void *, const void *), size_t *index) {
+	                      int (*compare)(const void *, const void *), size_t *index)
+{
 	size_t left = 0, right = vector->current_size, middle = (right - left) / 2;
 	size_t ref = 0;
 	char *buffer = vector->buffer;
@@ -57,10 +65,11 @@ bool vector_sorted_search(struct vector *vector, void *key,
 /*	Insere um novo elemento num vetor ordenado.
 	A inserção implica o avanço dos elementos seguintes,
 	com eventual aumento da memória alocada.
-	Retorna verdadeiro se a inserção de realizar ou o se elemento já existir.
+	Retorna verdadeiro se a inserção se realizar ou o se elemento já existir.
 */
 bool vector_sorted_insert(struct vector *vector, void *element,
-					int (*compare)( const void *, const void *)) {
+					int (*compare)( const void *, const void *))
+{
 	size_t left = 0, right = vector->current_size, middle = (right - left) / 2;
 	size_t ref = 0;
 	char *buffer = vector->buffer;
@@ -96,7 +105,8 @@ bool vector_sorted_insert(struct vector *vector, void *element,
  *	retorna a posição onde encontrou ou a dimensão caso não tenha encontrado.
  */
 bool vector_search(struct vector *vector, void *key,
-					int (*compare)(const void *, const void *), size_t *index) {
+					int (*compare)(const void *, const void *), size_t *index)
+{
 	for (size_t i = 0; i < vector->current_size; ++i)
 		if (compare(key, (char *)vector->buffer + i * vector->element_size)) {
 			*index = i;
@@ -107,19 +117,22 @@ bool vector_search(struct vector *vector, void *key,
 
 /* retorna a dimensão do vetor
 */
-size_t vector_size(struct vector *vector) {
+size_t vector_size(struct vector *vector)
+{
 	return vector->current_size;
 }
 
 /*	retorna o ponteiro para o elemento indicado
 */
-void *vector_at(struct vector *vector, int index) {
+void *vector_at(struct vector *vector, int index)
+{
 	return (char *)vector->buffer + index * vector->element_size;
 }
 
 /*	Afetar uma posição do vetor
 */
-void *vector_assign(struct vector *vector, int index, void *element) {
+void *vector_assign(struct vector *vector, int index, void *element)
+{
 	if (vector->current_size <= index)
 		vector->current_size = index + 1;
 	/* falta verificar se é necessário alocar mais memória */
@@ -131,7 +144,8 @@ void *vector_assign(struct vector *vector, int index, void *element) {
 	Se a posição indica estiver além da dimensão atual, o vetor é aumentado.
 	Retorna um booleano indicando o êxito da inserção.
 */
-bool vector_insert(struct vector *vector, void *element, size_t index) {
+bool vector_insert(struct vector *vector, void *element, size_t index)
+{
 	char *buffer = vector->buffer;
 	if (index >= vector->current_size) {
 		if (index >= vector->max_size) {
@@ -161,7 +175,8 @@ bool vector_insert(struct vector *vector, void *element, size_t index) {
 
 /*	Elimina um elemento do vetor movendo os elementos das posições superiores para trás
 */
-void vector_remove(struct vector *vector, size_t index) {
+void vector_remove(struct vector *vector, size_t index)
+{
 	memmove((char *)vector->buffer + index * vector->element_size,
 		(char *)vector->buffer + (index + 1) * vector->element_size,
 		(vector->current_size - index - 1) * vector->element_size);
@@ -170,7 +185,8 @@ void vector_remove(struct vector *vector, size_t index) {
 
 /*	Ordenar o vetor
 */
-void vector_sort(struct vector *vector, int (*compare)(const void *, const void *)) {
+void vector_sort(struct vector *vector, int (*compare)(const void *, const void *))
+{
 	qsort(vector->buffer, vector->current_size, vector->element_size, compare);
 }
 
@@ -203,20 +219,23 @@ int vector_sorted_remove(struct vector *vector, void *element,
 
 /*	Percorre o vetor e para cada elemento invoca uma função de callback passando-o como argumento.
 */
-void vector_foreach(struct vector *vector, void(*do_it)(void *, void *), void *context) {
+void vector_foreach(struct vector *vector, void(*do_it)(void *, void *), void *context)
+{
 	for (size_t i = 0; i < vector->current_size; ++i)
 		do_it((char *)vector->buffer + i * vector->element_size, context);
 }
 
-#define VECTOR_TEST
+#undef VECTOR_TEST
 
 #ifdef VECTOR_TEST
 
-void print_int(void *data, void *context) {
+void print_int(void *data, void *context)
+{
 	printf("%d + %d\n",  *(int*)context, *(int*)data);
 }
 
-int compare_int(const void *a, const void *b) {
+int compare_int(const void *a, const void *b)
+{
 	if (*(int*)a > *(int*)b)
 		return 1;
 	else if (*(int*)a < *(int*)b)
@@ -224,7 +243,8 @@ int compare_int(const void *a, const void *b) {
 	return 0;
 }
 
-int main() {
+int main()
+{
 	struct vector *v = vector_create(sizeof (int), 2);
 	vector_insert(v,  &(int){10}, 0);
 	vector_insert(v,  &(int){4}, 1);

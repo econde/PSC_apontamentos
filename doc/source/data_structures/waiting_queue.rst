@@ -37,7 +37,7 @@ realizações destas funções.
 
 .. literalinclude:: ../../../code/data_structures/waiting_queue/wqueue1.c
    :language: c
-   :lines: 132-175
+   :lines: 132-170
    :linenos:
    :name: wqueue_main
    :caption: Atividade principal do programa de simulação de fila de espera.

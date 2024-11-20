@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <ctype.h>
 /*------------------------------------------------------------------------------
 	Representa um utente na fila de espera
  */
@@ -121,12 +121,12 @@ static void user_delete_queue()
 static void help()
 {
 	printf("Comandos:\n"
-		"\tS\t\t- Sair do programa\n"
-		"\tH\t\t- Mostrar lista de comando\n"
-		"\tN <name>\t- Chegada de novo utente\n"
-		"\tD <name>\t- Desistencia de utente\n"
-		"\tL\t\t- Listar fila de espera\n"
-		"\tA\t\t- Atender utente\n");
+		"        S        - Sair do programa\n"
+		"        H        - Mostrar lista de comando\n"
+		"        N <name> - Chegada de novo utente\n"
+		"        D <name> - Desistencia de utente\n"
+		"        L        - Listar fila de espera\n"
+		"        A        - Atender utente\n");
 }
 
 int main()
@@ -139,33 +139,27 @@ int main()
 		if (command == NULL)
 			continue;
 		char *name = strtok(NULL, " \n");
-		switch (command[0]) {
-			case 's':
+		switch (toupper(*command)) {
 			case 'S':
 				user_delete_queue();
-			return EXIT_FAILURE;
-				return ;
-			case 'h':
+				return EXIT_FAILURE;
 			case 'H':
 				help();
 				break;
-			case 'n':
 			case 'N':
 				user_insert(name);
 				break;
-			case 'd':
 			case 'D':
 				user_remove(name);
 				break;
-			case 'l':
 			case 'L':
 				user_print();
 				break;
-			case 'a':
 			case 'A':
 				name = user_answer();
-				if (NULL == name)
+				if (NULL == name) {
 					printf("Fila vazia\n");
+				}
 				else {
 					printf("Atender %s\n", name);
 					free(name);

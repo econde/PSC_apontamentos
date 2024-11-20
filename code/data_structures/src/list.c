@@ -3,6 +3,11 @@
 #include <assert.h>
 #include "list.h"
 
+struct list_node {
+	struct list_node *next, *prev;
+	void *data;
+};
+
 void list_init(struct list_node *node)
 {
 	node->next = node->prev = node;

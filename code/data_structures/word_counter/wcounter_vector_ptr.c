@@ -5,13 +5,8 @@
 #include <errno.h>
 #include "vector_ptr.h"
 
-char *wordread(FILE *file, char *separators);
-
-unsigned int get_time() {
-	struct timespec ts;
-	clock_gettime(CLOCK_MONOTONIC, &ts);
-	return ts.tv_sec * 1000 + (ts.tv_nsec / 1000000);
-}
+char *read_word(FILE *file, char *separators);
+unsigned int get_time();
 
 typedef struct Word {
 	char *text;
@@ -54,7 +49,7 @@ int main(int argc, char *argv[]){
 	words = pvector_create(1000);
 	long initial = get_time();
 	char *word_text;
-	while ((word_text = wordread(fd, separators)) != NULL) {
+	while ((word_text = read_word(fd, separators)) != NULL) {
 		nwords++;
 		size_t index;
 		if (pvector_sorted_search(words, word_text,

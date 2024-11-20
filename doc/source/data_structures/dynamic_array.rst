@@ -22,59 +22,49 @@ Por exemplo, a escrita numa posição além da dimensão atual do *array*,
 pode desencadear uma operação de subtituição da zona da memória de suporte de dados
 por uma zona de memória de dimensão maior.
 
-No programa contador de palavras é utilizado um *array* dinâmico de objetos do tipo
+Nesta versão do programa contador de palavras é utilizado um *array* dinâmico de objetos do tipo
 
 .. literalinclude:: ../../../code/data_structures/word_counter/wcounter_vector.c
    :language: c
-   :lines: 11-14
+   :lines: 18-21
 
 O *array* é referenciado pelo ponteiro ``words``
-e representado por uma estrutura ``struct vector``
+e representado por uma estrutura ``struct vector`` criada dinamicamente.
 
 .. literalinclude:: ../../../code/data_structures/word_counter/wcounter_vector.c
    :language: c
-   :lines: 22
+   :lines: 23
 
-criada dinamicamente.
-
-.. literalinclude:: ../../../code/data_structures/word_counter/wcounter_vector.c
-   :language: c
-   :lines: 47
-
-O primeiro argumento de ``vector_create`` é a dimensão do elemento
-e o segundo argumento é o acréscimo, em número de elementos, quando o
-*array* é aumentado. A utilização do valor 2 é por acaso.
-
-O ciclo de processamento de palavras consiste na leitura de palavra -- linha 11,
-na procura da palavra pela função ``vector_sorted_search`` -- linha 14
-e pela inserção se a palavra ainda não estiver presente -- linhas 19 a 25.
-
-Para a inserção é utilizada a variável local ``w`` alojada em *stack* -- linha 19.
-A inserção é realizada pela função ``vector_insert``
-que copia o conteúdo de ``word`` para a posição ``index`` do *array*.
-É utilizado o valor de ``index`` devolvido pela função ``vector_sorted_searc``
-com a posição do *array* onde o elemento deve ser inserido para manter a ordenação.
-Este aproveitamento dispensa uma nova procura da posição de inserção.
+O ciclo de processamento de palavras consiste na leitura de palavra (linha 7),
+na procura da palavra (linha 10)
+e pela inserção, se a palavra ainda não estiver presente (linhas 15 a 17).
 
 .. literalinclude:: ../../../code/data_structures/word_counter/wcounter_vector.c
    :language: c
    :linenos:
-   :lines: 47-48,53-66,71-82
+   :lines: 48-49,54-67,72-83
+   :caption: Contagem de palavras baseada em *array* dinâmico
+   :name: wcounter_vector_main
 
-Implementação
--------------
+Criação do *array*
+------------------
 
+O *array* dinâmico é criado pela função ``vector_create`` (linha 4). 
+O primeiro argumento é a dimensão dos elementos do *array*
+e o segundo argumento é o acréscimo, em número de elementos, quando o
+*array* é aumentado. A utilização do valor 2 é por acaso.
+  
 O *array* dinâmico genérico é baseado na ``struct vector``.
 
-.. literalinclude:: ../../../code/data_structures/include/vector.h
+.. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
-   :lines: 4-7
+   :lines: 7-10
 
 * O campo ``buffer`` aponta a zona da memória de dados do *array*.
 * O campo ``element_size`` a dimensão dos elementos do *array*, em número de bytes.
-* O campo ``currente_size`` o número de elementos atual.
-* O campo ``max_size`` a capacidade da memória alocada.
-* O campo ``chunck_size`` o acréscimo de elementos quando o *array* for aumentado.
+* O campo ``current_size`` o atual número de elementos.
+* O campo ``max_size`` a capacidade da memória alocada, em número de elementos.
+* O campo ``chunck_size`` o acréscimo, em número de elementos, quando o *array* for aumentado.
 
 vector_create
 .............
@@ -85,7 +75,100 @@ e para a zona de dados do *array* (linha 5).
 .. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
    :linenos:
-   :lines: 7-21
+   :lines: 12-27
+
+Procura da palavra
+------------------
+
+Cada palavra lida do texto é procurada no *array*.
+O *array* é mantido ordenado para permitir
+a utilização de pesquisa dicotómica que tem custo :math:`log_2 N`.
+
+A procura é realizada pela função ``vector_sorted_search``.
+Recebe como argumentos a palavra a procurar e a função de comparação.
+Devolve duas informações: se encontrou -- o índice onde se encontra; 
+ou se não encontrou -- o índice onde deveria encontrar.
+
+vector_sorted_search
+....................
+
+Esta função assume que o *array* se encontra ondenado
+com um critério compatível com a função de comparação recebida no parâmetro ``compare``.
+Essa função devolve um valor positivo se o primeiro argumento for de ordem superior ao segundo,
+um valor negativo se for de ordem inferior ou zero se forem da mesma ordem (iguais).
+
+Esta função aplica um algoritmo de procura dicotómica subdividindo o *array*
+em sucessivas metades até encontrar o elemento procurado
+ou até não poder subdividir mais,
+o que significa que o elemento procurado não está no *array*.
+
+A variável ``ref`` serve para anotar a posição do *array*
+onde o elemento procurado se deveria encontrar, caso estivesse presente.
+Este valor é devolvido através do parâmetro de saída ``index``.
+O objetivo é poder vir a seu utilizado na inserção desse elemento,
+mantendo a ordenação, e dispensando uma nova procura.
+
+.. literalinclude:: ../../../code/data_structures/src/vector.c
+   :language: c
+   :linenos:
+   :lines: 39-61
+   
+Inserção de palavra
+-------------------
+
+A inserção de uma nova palavra dá-se nas linhas 15 a 17.
+Ocorre depois de se verificar que a palavra ainda não existe no *array*.
+
+Na inserção é utilizada a variável local ``w`` alojada em *stack* (linha 15)
+onde se concentra a informação relativa à palavra
+-- o ponteiro para o texto da palavra e o contador.
+A inserção é realizada pela função ``vector_insert``, 
+que recebe o ponteiro para ``w`` e copia o conteúdo apontado
+para a posição ``index`` do *array*.
+
+É utilizado o valor de ``index`` devolvido pela função ``vector_sorted_search``
+com a posição do *array* onde o elemento deve ser inserido para manter a ordenação.
+Este aproveitamento dispensa uma nova procura da posição de inserção.
+
+vector_insert
+.............
+A função ``vector_insert`` insere o elemento apontado pelo parâmetro ``element``
+na posição indicada por ``index``.
+
+Se essa posição estiver aquém da dimensão atual (linha 14),
+os elementos das posições seguintes são deslocados uma posição para a frente (linhas 21 a 23).
+
+Devido a este deslocamento, se toda a memória alocada estiver utilizada,
+é necessário aumentar a porção de memória alocada (linha 15).
+
+Se essa posição estiver além da memória alocada (linha 4),
+a alocação de memória é aumentada até cobrir a posição indicada (linhas 5 e 6).
+
+O aumento de memória afeta aos dados do *array*
+implica alocar um novo bloco, copiar os dados do bloco antigo para o novo bloco
+e libertar o bloco antigo. 
+
+A função ``realloc``, pertencente à biblioteca normalizada da linguagem C,
+satisfaz esta necessidade.
+Recebe o ponteiro para um bloco de memória previamente alocado
+e uma nova dimensão e altera a dimensão desse bloco para essa dimensão,
+mantendo o conteúdo de dados.
+
+.. literalinclude:: ../../../code/data_structures/src/vector.c
+   :language: c
+   :linenos:
+   :lines: 147-174
+
+Eliminação do *array*
+---------------------
+
+Quando os dados no *array* e o próprio *array* não são mais necessários, deve-se
+libertar os recursos de memória associados. Essa libertação decorre em duas fases,
+a libertação dos elementos seguida da eliminação do próprio *array*.
+A primeira deve ser realizada no contexto de utilização, na :numref:`wcounter_vector_main`,
+linha 26, são percorridas todas as posições do *array*, invocando em *callback* a função ``free_word``.
+A segunda é realizada pela função ``vector_destroy`` (:numref:`wcounter_vector_main`,
+linha 27). 
 
 vector_destroy
 ..............
@@ -98,28 +181,8 @@ Por último liberta a memória da própria ``struct vector``.
 .. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
    :linenos:
-   :lines: 23-26
+   :lines: 29-33
 
-
-vector_sorted_search
-....................
-
-Esta função assume que o *array* se encontra ondenado
-com o critério da função de comparação recebida no parâmetro ``compare``.
-Esta função devolve um valor positivo se o primeiro argumento for de ordem superior ao segundo,
-um valor negativo se for de ordem inferior ou zero se forem da mesma ordem (iguais).
-
-Esta função aplica um algoritmo de procura dicotómico subdividindo o *array*
-em sucessivas metades até encontrar o elemento procurado
-ou até não poder subdividir mais, o que significa que o elemento procurado não está no *array*.
-
-A variável ``ref`` serve para anotar a posição onde um elemento deve ser inserido,
-caso não esteja presente, e se pretenda manter a ordenação.
-
-.. literalinclude:: ../../../code/data_structures/src/vector.c
-   :language: c
-   :linenos:
-   :lines: 32-53
 
 vector_at
 .........
@@ -133,39 +196,7 @@ pode-se obter o ponteiro para outras posições do *array*.
    :linenos:
    :lines: 116-118
 
-vector_insert
-.............
-
    
-   
-A função ``realloc`` pertencente à biblioteca normalizada da linguagem C
-ajusta-se a esta necessidade.
-Formalmente, recebe a referência para um bloco de memória previamente alocado
-e uma dimensão e altera a dimensão desse bloco para essa dimensão.
-
-A operação de alteração da memória de suporte de dados
-implica alocar um novo bloco, copiar os dados do bloco antigo para o novo bloco
-e libertar o bloco antigo. 
-
-
-
-Insere o elemento referenciado pelo parâmetro ``element``
-na posição indicada por ``index``.
-
-Se essa posição estiver além da memória alocada (linha 4),
-a alocação de memória é aumentada até cobrir a posição desejada (linhas 5-6).
-
-Se essa posição estiver aquém da dimensão atual do *array* (linha 14),
-os elementos das posições seguintes são deslocados uma posição para frente (linhas 21-23).
-
-Se nessa altura toda a memória alocada estiver a ser usada (linha 15),
-a alocação é aumentada de uma porção ``chunck_size`` (linhas 16-17).
-
-.. literalinclude:: ../../../code/data_structures/src/vector.c
-   :language: c
-   :linenos:
-   :lines: 134-160
-
 vector_sort
 ...........
 
@@ -202,5 +233,3 @@ assim como ao objeto de contexto.
    :language: c
    :linenos:
    :lines: 206-209
-
-  

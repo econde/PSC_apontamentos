@@ -1,16 +1,21 @@
 #include <stdlib.h>
 #include "slist.h"
 
-void slist_destroy(SList_node *list) {
-	for (SList_node *next, *p = list; p != NULL; p = next) {
+struct slist_node {
+	struct slist_node *next;
+	void *data;
+};
+
+void slist_destroy(struct slist_node *list) {
+	for (struct slist_node *next, *p = list; p != NULL; p = next) {
 		next = p->next;
 		free(p);
 	}
 }
 
-SList_node *slist_insert_sort(SList_node *list,
+struct slist_node *slist_insert_sort(struct slist_node *list,
 	int (*fcmp)(const void *, const void *), void *data) {
-	SList_node *node = malloc(sizeof (*node));
+	struct slist_node *node = malloc(sizeof (*node));
 	if (NULL == node)
 		return NULL;
 	node->data = data;
@@ -21,8 +26,8 @@ SList_node *slist_insert_sort(SList_node *list,
 		node->next = list;
 	}
 	else {
-		SList_node *prev = list;		/* Primeiro elemento já verificado */
-		SList_node *p;
+		struct slist_node *prev = list;		/* Primeiro elemento já verificado */
+		struct slist_node *p;
 		for (p = prev->next; p != NULL && fcmp(p->data, data) < 0; prev = p, p = p->next)
 			;
 		node->next = p;
@@ -32,8 +37,8 @@ SList_node *slist_insert_sort(SList_node *list,
 	return node;
 }
 
-SList_node *slist_insert(SList_node *list, void *data) {
-	SList_node *node = malloc(sizeof (*node));
+struct slist_node *slist_insert(struct slist_node *list, void *data) {
+	struct slist_node *node = malloc(sizeof (*node));
 	if (NULL == node)
 		return 0;
 	node->data = data;
@@ -41,13 +46,13 @@ SList_node *slist_insert(SList_node *list, void *data) {
 	return node;
 }
 
-SList_node *slist_remove_head(SList_node *list) {
-	SList_node *next = list->next;
+struct slist_node *slist_remove_head(struct slist_node *list) {
+	struct slist_node *next = list->next;
 	free(list);
 	return next;
 }
 
-SList_node *slist_remove(SList_node *list, SList_node *node) {
+struct slist_node *slist_remove(struct slist_node *list, struct slist_node *node) {
 	if (node == NULL || list == NULL)
 		return list;
 	if (list == node) {
@@ -55,8 +60,8 @@ SList_node *slist_remove(SList_node *list, SList_node *node) {
 		free(node);			/* Remover o primeiro elemento */
 	}
 	else {
-		SList_node *prev = list;
-		for (SList_node *p = prev->next; p != NULL; prev = p, p = p->next)
+		struct slist_node *prev = list;
+		for (struct slist_node *p = prev->next; p != NULL; prev = p, p = p->next)
 			if (p == node) {
 				prev->next = node->next;
 				free(node);
@@ -65,14 +70,14 @@ SList_node *slist_remove(SList_node *list, SList_node *node) {
 	return list;
 }
 
-void slist_foreach(SList_node *list, void(*do_it)(void *, void *), void *context) {
-	for (SList_node * p = list; p != NULL; p = p->next)
+void slist_foreach(struct slist_node *list, void(*do_it)(void *, void *), void *context) {
+	for (struct slist_node * p = list; p != NULL; p = p->next)
 		do_it(p->data, context);
 }
 
-SList_node *slist_search_sort(SList_node *list,
+struct slist_node *slist_search_sort(struct slist_node *list,
 							int (*fcmp)(const void *, const void *), const void *data) {
-	for (SList_node *p = list; p != NULL; p = p->next) {
+	for (struct slist_node *p = list; p != NULL; p = p->next) {
 		int tmp = fcmp(p->data, data);
 		if (tmp == 0)
 			return p;
@@ -82,26 +87,26 @@ SList_node *slist_search_sort(SList_node *list,
 	return NULL;
 }
 
-SList_node *slist_search(SList_node *list, const void *data,
+struct slist_node *slist_search(struct slist_node *list, const void *data,
 	int (*fcmp)(const void *, const void *)) {
-	for (SList_node *p = list; p != NULL; p = p->next)
+	for (struct slist_node *p = list; p != NULL; p = p->next)
 		if (fcmp(p->data, data) == 0)
 			return p;
 	return NULL;
 }
 
-int slist_size(SList_node *list) {
+int slist_size(struct slist_node *list) {
 	int n = 0;
-	for (SList_node *p = list; p != NULL; p = p->next, ++n)
+	for (struct slist_node *p = list; p != NULL; p = p->next, ++n)
 		;
 	return n;
 }
 
-void *slist_data(SList_node *node) {
+void *slist_data(struct slist_node *node) {
 	return node->data;
 }
 
-int slist_empty(SList_node *list) {
+int slist_empty(struct slist_node *list) {
 	return NULL == list;
 }
 

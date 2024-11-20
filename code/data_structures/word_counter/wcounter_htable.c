@@ -4,18 +4,14 @@
 #include <time.h>
 #include <errno.h>
 
-char *wordread(FILE *file, char *separators);
+char *read_word(FILE *file, char *separators);
 
-unsigned int get_time() {
-	struct timespec ts;
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts);
-	return ts.tv_sec * 1000 + (ts.tv_nsec / 1000000);
-}
+unsigned int get_time();
 
-typedef struct Word {
+struct word {
 	char *text;
 	int counter;
-} Word;
+};
 
 char *separators = " .,;!?\t\n\f:-\"\'(){}[]*=%><#+-&";
 
@@ -25,10 +21,10 @@ static inline int min(int a, int b) {
 
 #include "htable.h"
 
-Htable *htable;
+struct htable *htable;
 
 int word_cmp_text(const void *data, const void *b) {
-	return strcmp(((Word *)data)->text, (char*)b);
+	return strcmp(((struct word *)data)->text, (char*)b);
 }
 
 int hash_function(const void *data) {
@@ -40,7 +36,7 @@ int hash_function(const void *data) {
 }
 
 void free_words(void *data, void *context) {
-	free(((Word *)data)->text);
+	free(((struct word *)data)->text);
 	free(data);
 }
 
@@ -49,8 +45,8 @@ void free_words(void *data, void *context) {
 #include "slist.h"
 
 int cmp_counter(const void *data, const void *context) {
-	Word *ref = (Word *)data;
-	Word *new = (Word *)context;
+	struct word *ref = (struct word *)data;
+	struct word *new = (struct word *)context;
 	if (ref->counter > new->counter)
 		return +1;
 	else if (ref->counter < new->counter)
@@ -61,30 +57,35 @@ int cmp_counter(const void *data, const void *context) {
 //------------------------------------------------------------------------------
 
 typedef struct Top_ten {
-	SList_node *list;
+	struct slist_node *list;
 	int lower_counter;
 	int list_size;
 } Top_ten;
 
 static void insert_in_list(void *data, void *context) {
 	Top_ten *stuff = (Top_ten*)context;
-	Word *word = (Word *)data;
+	struct word *word = (struct word *)data;
 	if (stuff->list_size < 10) {
 		stuff->list = slist_insert_sort(stuff->list, cmp_counter, data);
 		stuff->list_size++;
-		stuff->lower_counter = ((Word *)slist_data(stuff->list))->counter;
+		stuff->lower_counter = ((struct word *)slist_data(stuff->list))->counter;
 	}
 	else if (word->counter > stuff->lower_counter) {
 		stuff->list = slist_insert_sort(stuff->list, cmp_counter, data);
 		stuff->list = slist_remove_head(stuff->list);
-		stuff->lower_counter = ((Word *)slist_data(stuff->list))->counter;
+		stuff->lower_counter = ((struct word *)slist_data(stuff->list))->counter;
 	}
 }
 
-static SList_node *htable_to_sortedlist(Htable *htable) {
+static struct slist_node *get_top_ten(struct htable *htable) {
 	Top_ten stuff = { NULL, 0, 0 };
 	htable_foreach(htable, insert_in_list, &stuff);
 	return stuff.list;
+}
+
+static void print_word(void *a, void *) {
+	struct word *word = a;
+	printf("%s - %d\n", word->text, word->counter);
 }
 
 int main(int argc, char *argv[]){
@@ -98,14 +99,14 @@ int main(int argc, char *argv[]){
 	htable = htable_create(10000, hash_function, word_cmp_text);
 	long initial = get_time();
 	char *word_text;
-	while((word_text = wordread(fd, separators)) != NULL) {
+	while((word_text = read_word(fd, separators)) != NULL) {
 		nwords++;
-		Word *word = htable_lookup(htable, word_text);
+		struct word *word = htable_lookup(htable, word_text);
 		if (word != NULL) {
 			word->counter++;
 		}
 		else {
-			word = malloc(sizeof(Word));
+			word = malloc(sizeof(struct word));
 			word->counter = 1;
 			word->text = strdup(word_text);
 			htable_insert(htable, word_text, word);
@@ -117,19 +118,11 @@ int main(int argc, char *argv[]){
 			nwords, htable_size(htable), duration);
 	printf("Collisions = %d\n", htable_collisions(htable));
 
-	SList_node *list = htable_to_sortedlist(htable);
-
-	int i = 0;
-	for (SList_node *p = list; p != NULL && i < 10; p = p->next, i++) {
-		Word *word = (Word *)p->data;
-		printf("%s - %d\n", word->text, word->counter);
-	}
-	slist_destroy(list);
+	struct slist_node *top_ten_list = get_top_ten(htable);
+	slist_foreach(top_ten_list, print_word, NULL);
+	slist_destroy(top_ten_list);
 
 	fclose(fd);
 	htable_foreach(htable, free_words, NULL);
 	htable_destroy(htable);
 }
-
-
-

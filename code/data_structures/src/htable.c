@@ -3,7 +3,14 @@
 */
 #include "htable.h"
 
-void htable_init(Htable *htable, size_t size,
+struct htable {
+	struct slist_node **base;
+	size_t size;
+	int (*hash_function)(const void *);
+	int (*key_function)(const void *, const void *);
+};
+
+void htable_init(struct htable *htable, size_t size,
 				int (*hf)(const void *),
 				int (*kf)(const void *, const void *)) {
 	htable->hash_function = hf;
@@ -13,10 +20,10 @@ void htable_init(Htable *htable, size_t size,
 		htable->base[i] = NULL;
 }
 
-Htable *htable_create(size_t size,
+struct htable *htable_create(size_t size,
 				int (*hf)(const void *),
 				int (*kf)(const void *, const void *)) {
-	Htable *htable = malloc(sizeof(Htable));
+	struct htable *htable = malloc(sizeof(struct htable));
 	if (NULL == htable)
 		return NULL;
 	htable->base = malloc(sizeof *htable->base * size);
@@ -28,7 +35,7 @@ Htable *htable_create(size_t size,
 	return htable;
 }
 
-void htable_destroy(Htable *htable) {
+void htable_destroy(struct htable *htable) {
 	for (size_t i = 0; i < htable->size; ++i)
 		if (htable->base[i] != NULL)
 			slist_destroy(htable->base[i]);
@@ -36,40 +43,40 @@ void htable_destroy(Htable *htable) {
 	free(htable);
 }
 
-int htable_insert(Htable *htable, const void *key, void *data) {
+int htable_insert(struct htable *htable, const void *key, void *data) {
 	int index = htable->hash_function(key) % htable->size;
 	htable->base[index] = slist_insert(htable->base[index], data);
 	return htable->base[index] != NULL;
 }
 
-void htable_remove(Htable *htable, const void *key) {
+void htable_remove(struct htable *htable, const void *key) {
 	int index = htable->hash_function(key) % htable->size;
 	if (NULL == htable->base[index])
 		return;
-	SList_node *node = slist_search(htable->base[index],
+	struct slist_node *node = slist_search(htable->base[index],
 								key, htable->key_function);
 	if (NULL != node)
 		htable->base[index] = slist_remove(htable->base[index], node);
 }
 
-void *htable_lookup(Htable *htable, const void *key) {
+void *htable_lookup(struct htable *htable, const void *key) {
 	int index = htable->hash_function(key) % htable->size;
 	if (NULL == htable->base[index])
 		return NULL;
-	SList_node *node = slist_search(htable->base[index],
+	struct slist_node *node = slist_search(htable->base[index],
 									key, htable->key_function);
 	if (node != NULL)
 		return slist_data(node);
 	return NULL;
 }
 
-void htable_foreach(Htable *htable, void (*do_it)(void*, void *), void *context) {
+void htable_foreach(struct htable *htable, void (*do_it)(void*, void *), void *context) {
 	for (size_t i = 0; i < htable->size; ++i)
 		if (htable->base[i] != NULL)
 			slist_foreach(htable->base[i], do_it, context);
 }
 
-size_t htable_size(Htable *htable) {
+size_t htable_size(struct htable *htable) {
 	int i, counter = 0;
 	for (i = 0; i < htable->size; ++i)
 		if (NULL != htable->base[i])
@@ -77,7 +84,7 @@ size_t htable_size(Htable *htable) {
 	return counter;
 }
 
-int htable_collisions(Htable * htable) {
+int htable_collisions(struct htable * htable) {
 	int i, max_collisions = 0;
 	for (i = 0; i < htable->size; ++i) {
 		if (NULL != htable->base[i]) {

@@ -45,7 +45,7 @@ Os valores *signed* são codificados em código dos complementos para dois
    Representação de valores inteiros
 
 A linguagem C não define a representação interna dos valores *float*.
-A norma IEE754 é a mais utilizada.
+A norma IEEE754 é a mais utilizada.
 
 Dimensões
 ---------
@@ -254,13 +254,13 @@ para uma representação em texto, na base decimal com ``DEC_FRAC`` casas decima
 
 Completar o esboço de programa apresentado abaixo
 que realiza as quatro operações aritméticas básicas
-sobre números reais representados em binário com ``BIN_FRC`` casas fracionárias.
+sobre números reais representados em binário com ``BIN_FRAC`` casas fracionárias.
 
 .. literalinclude:: ../../../code/values_expressions/float/calc_fixed.c
    :language: c
    :linenos:
    :lines: 59,69-76,78-79,82-83,86-87,89-92
-   :caption: Operações aritméticas em vigula fixa
+   :caption: Operações aritméticas em vírgula fixa
 
 
 Vírgula flutuante (IEEE 754)
@@ -399,7 +399,7 @@ Constantes
 
 A plica é usada como separador de grupo. Exemplos:
    * 1'000'000 = um milhão (1_000_000 -- Kotlin);
-   * 0b0110'1010'1000 = 0x6a8 (0x0110_1010_1100 – Kotlin).
+   * 0b0110'1010'1000 = 0x6a8 (0x0110_1010_1100 -- Kotlin).
 
 Em linguagem C os valores não alteráveis
 (o equivalente a **val** da linguagem Kotlin e designados por constantes na linguagem C)
@@ -442,8 +442,8 @@ ou zero no caso de ser o primeiro elemento.
 
 .. code-block:: c
 
-   enum mounth { JAN = 1, FEV, MAR, ABR, MAI, JUN, JUL, AGO, SET, OUT, NOV, DEZ};
-   enum mounth m = FEV;
+   enum month { JAN = 1, FEV, MAR, ABR, MAI, JUN, JUL, AGO, SET, OUT, NOV, DEZ};
+   enum month m = FEV;
    int n = m;
 
 O identificador de um elemento do enumerado é global.
@@ -572,7 +572,7 @@ Operações booleanas
 
 A avaliação de expressões booleanas realiza-se da esquerda para a direita.
 Se na avaliação de uma sub-expressão o resultado for igual ao elemento absorvente,
-as restantes sub-expressões já não serão avaliadas (*lazzy evaluation*).
+as restantes sub-expressões já não serão avaliadas (*lazy evaluation*).
 
 Os operandos naturais destes operadores são valores booleanos.
 Nas versões da linguagem anteriores à C23 não existia tipo **bool**,
@@ -610,10 +610,10 @@ prioridade dos operadores, ordem de associação de operadores e ordem de avalia
                                                                 positivo; negativo; desreferenciar; endereço de;          
                                                                 forçar o tipo; dimensão              
       **\* / %**                               left to right    multiplicação; divisão; resto da divisão
-      **+ -**                                  left to right    adição; subtracção
+      **+ -**                                  left to right    adição; subtração
       **<< >>**                                left to right    deslocamento dos bits
       **< <= > >=**                            left to right    relacionais
-      **+ -**                                  left to right    adição; subtracção
+      **+ -**                                  left to right    adição; subtração
       **== !=**                                left to right    igual; diferente
       **&**                                    left to right    e bit-a-bit
       **^**                                    left to right    ou exclusivo bit-a-bit
@@ -653,7 +653,7 @@ Ordem de avaliação
 
 A ordem de avaliação dos operandos só está definida para os operadores **&&** **||** **?:** **,**. 
 
-Nas operações **&&** e **||** aplica-se o critério *lazzy evaluation*.
+Nas operações **&&** e **||** aplica-se o critério *lazy evaluation*.
 
 ::
 
@@ -673,7 +673,7 @@ se existir alguma dependência entre f() e g()
        return  x *= 10;
    }
 
-Outro exemplo de comportamento indefinido: ``printf(“%d %d\n”, ++n, power2(2, n));``.
+Outro exemplo de comportamento indefinido: ``printf("%d %d\n", ++n, power2(2, n));``.
 
 Expressão condicional
 ---------------------
@@ -729,15 +729,15 @@ Como associa da direita para a esquerda, a expressão anterior é equivalente a
 
 Tem a seguinte interpretação: afeta **c** com **7** donde resulta o valor **7**
 que por sua vez é afetado à variável **b**, donde resulta o mesmo valor **7**
-que por sua vez é afetado à variavel **a**. Ficando todas as variáveis com o mesmo valor.
+que por sua vez é afetado à variável **a**. Ficando todas as variáveis com o mesmo valor.
 
 Os operadores **+= -= *= /= %= &= ^= |= <<= >>=** realizam a operação indicada à esquerda do sinal **=**.
 A variável escrita à esquerda é o destino e o primeiro operando.
 
 Por exemplo ``m |= 2`` é equivalente a ``m = m | 2``.
 
-Operarador vírgula
-------------------
+Operador vírgula
+----------------
 O operador vírgula permite colocar mais do que uma expressão
 em locais onde sintaticamente só poderia ser colocada uma expressão.
 As expressões individuais vão sendo avaliadas da esquerda para a direita
@@ -808,20 +808,20 @@ Em linguagem C qualquer das seguintes definições de variável é válida, embo
 
 ::
 
-   char c = ‘a’;
-   char d = ‘d’;
-   int e = ‘f’;
-   long f = ‘g’;
+   char c = 'a';
+   char d = 'd';
+   int e = 'f';
+   long f = 'g';
 
 A especificação de caracteres literais, incluindo as sequências de escape:
 
-``'a'..'z' 'A'..'Z' '\a' '\b' '\f' '\n' '\r' '\t' '\v' '\\' '\'' '\”‘ '\123' '\xhh'``
+``'a'..'z' 'A'..'Z' '\a' '\b' '\f' '\n' '\r' '\t' '\v' '\\' '\'' '\"' '\123' '\xhh'``
 
 ========================= ================================ ===========================
 ``\a`` alerta             ``\b`` retroceder (*backspace*)  ``\f`` avanço de página
 ``\n`` nova linha         ``\r`` coloca cursor na coluna 0 ``\t`` tabulador horizontal
 ``\v`` tabulador vertical ``\\`` o próprio \\               ``\'`` plica 
-``\”`` aspas
+``\"`` aspas
 ========================= ================================ ===========================
 
 Strings
@@ -833,14 +833,14 @@ No entanto utiliza a mesma notação sintática para definir literais do tipo *s
 
 ::
 
-   “Isto é uma string em C, em Java ou em Kotlin”
+   "Isto é uma string em C, em Java ou em Kotlin"
 
 Em linguagem C um literal do tipo string é formalmente considerado um array de elementos do tipo char.
 Por exemplo: ::
 
-   char greetings[] = “Bom-dia!”;
+   char greetings[] = "Bom-dia!";
 
-Os códigos numéricos dos caracteres que compõem “Bom-dia!” são armazenados nas sucessivas posições do *array* ``greetings``.
+Os códigos numéricos dos caracteres que compõem "Bom-dia!" são armazenados nas sucessivas posições do *array* ``greetings``.
 Na posição a seguir à do código do último caractere é colocado o valor numérico zero
 para indicar o final da *string* (indiretamente define a sua dimensão).
 Assim, a definição acima produz um *array* de valores do tipo *char*
@@ -851,7 +851,7 @@ com nove posições e a seguinte ocupação:
       :scale: 120%
 
 Utilizando o operador indexação sobre este *array* poderemos obter ou modificar os valores
-numéricos de cada posição. ``greeting[0]`` corresponde ao valor numérico 66 que representa a letra ‘B’;
+numéricos de cada posição. ``greeting[0]`` corresponde ao valor numérico 66 que representa a letra 'B';
 ``greeting[7]`` dá acesso ao valor numérico 33 que é o código numérico do ponto de exclamação.
  
 Exemplos de definição de *strings* em C: ::

@@ -44,7 +44,10 @@ uma estrutura de dados diferente como contentor de palavras.
 
    dynamic_array.rst
    tree.rst
-   hash_table.rst
 
 Referências
 ===========
+
+GLib -- 2.0, https://docs.gtk.org/glib/
+
+

@@ -615,7 +615,7 @@ para afetar um número de *bits* inferior sem modificar os restantes
 é necessário ler, alterar os *bits* em causa e voltar a escrever.
 Resultando em dois acessos à memória, um de leitura e um de escrita.
 
-Apesar da aparentemente vantagem em relação à utilização de operadores lógicos bit-a-bit,
+Apesar da aparente vantagem em relação à utilização de operadores lógicos bit-a-bit,
 nem sempre é conveniente a sua utilização:
 
    1. Se, no acesso a um registo de periférico, este for só de escrita a operação de leitura é inútil.

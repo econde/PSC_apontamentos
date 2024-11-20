@@ -9,38 +9,33 @@
 #include <stdlib.h>
 #include "slist.h"
 
-typedef struct Htable {
-	SList_node **base;
-	size_t size;
-	int (*hash_function)(const void *);
-	int (*key_function)(const void *, const void *);
-} Htable;
+struct htable;
 
 #define STATIC_HTABLE(name, size, hash_function) \
-	static SList_node *name##links[size]; \
-	static Htable name = { name##links, size, hash_function }
+	static struct slist_node *name##links[size]; \
+	static struct htable name = { name##links, size, hash_function }
 
 
-void htable_init(Htable *, size_t,
+void htable_init(struct htable *, size_t,
 				int (*hash_function)(const void *),
 				int (*key_function)(const void *, const void *));
 
-Htable *htable_create(size_t,
+struct htable *htable_create(size_t,
 				int (*hash_function)(const void *),
 				int (*key_function)(const void *, const void *));
 
-void htable_destroy(Htable *);
+void htable_destroy(struct htable *);
 
-int htable_insert(Htable *table, const void *key, void *data);
+int htable_insert(struct htable *table, const void *key, void *data);
 
-void htable_remove(Htable *htable, const void *key);
+void htable_remove(struct htable *htable, const void *key);
 
-void *htable_lookup(Htable *htable, const void *key);
+void *htable_lookup(struct htable *htable, const void *key);
 
-void htable_foreach(Htable *, void (*do_it)(void*, void*), void *context);
+void htable_foreach(struct htable *, void (*do_it)(void*, void*), void *context);
 
-size_t htable_size(Htable *table);
+size_t htable_size(struct htable *table);
 
-int htable_collisions(Htable *table);
+int htable_collisions(struct htable *table);
 
 #endif
