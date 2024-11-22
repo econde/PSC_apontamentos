@@ -173,7 +173,7 @@ linha 27).
 vector_destroy
 ..............
 
-A função ``vector_destroy`` liberta a memória alocada para os dados do *array* (linha 2).
+A função ``vector_destroy`` liberta a memória alocada para os dados do *array* (linha 3).
 Esta memória foi alocada na função ``vector_create`` utilizando a função ``malloc``
 ou numa expansão utilizando a função ``realloc``.
 Por último liberta a memória da própria ``struct vector``.
@@ -194,7 +194,7 @@ pode-se obter o ponteiro para outras posições do *array*.
 .. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
    :linenos:
-   :lines: 116-118
+   :lines: 127-130
 
    
 vector_sort
@@ -213,7 +213,7 @@ do *array* que o algoritmo de ordenção determine comparar.
 .. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
    :linenos:
-   :lines: 173-175
+   :lines: 188-191
 
 vector_foreach
 ..............
@@ -232,4 +232,4 @@ assim como ao objeto de contexto.
 .. literalinclude:: ../../../code/data_structures/src/vector.c
    :language: c
    :linenos:
-   :lines: 206-209
+   :lines: 222-226

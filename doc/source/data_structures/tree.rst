@@ -6,8 +6,8 @@ contentor de palavras uma árvore binária de utilização genérica.
 Uma árvore binária é um caso particular de contentor de pares chave/valor.
 Quando balanceada apresenta custo de pesquisa de ordem :math:`log_2 N`.
 
-Os elementos de dados são a ``struct word``,
-a chave de ordenação é o texto da própria palavra contida nesta *struct*.
+O elemento de dado é a ``struct word``.
+A chave de ordenação é o texto da própria palavra contida nesta *struct*.
 
 .. literalinclude:: ../../../code/data_structures/word_counter/wcounter_tree.c
    :language: c
@@ -21,26 +21,26 @@ a chave de ordenação é o texto da própria palavra contida nesta *struct*.
    :caption: Programa contador de palavras baseado em árvore binária (wcounter_tree.c)
    :name: wcounter_tree_main
 
-A fase de leitura e contabilização de palavras processa-se entre as linhas 7 e 29.
-Depois da leitura (linha 7), a palavra é procurada no contentor de palavras
-com a função ``tree_search``. Se a palavra já existir (``node != NULL``)
+A fase de leitura e contabilização de palavras processa-se entre as linhas 7 e 21.
+Depois da leitura (linha 7), a palavra é procurada na árvore
+com a função ``tree_search``. Se a palavra já existir (``node != NULL``),
 o respetivo contador é incrementado (linha 13).
 Se a palavra ainda não exitir,
 é necessário alocar memória para um novo objeto ``struct word`` (linha 16),
 preenchê-lo com a informação da palavra (linhas 17 e 18)
 e por fim inseri-lo no contentor de palavras (linha 19).
 
-Terminda a recolha de palavras, e depois de apresentados os resultados (linhas 22 a 26),
+Terminda a recolha de palavras, e depois de apresentados os resultados (linhas 22 a 25),
 são libertados os recursos alocados.
 No que respeita ao contentor de palavras,
 primeiro percorre-se a àrvore e eliminam-se os objectos com a informação das palavras
--- todas as ``struct word`` (linha 28).
-Em seguida, elimina-se a própria àrvore -- todas as ``struct tree`` (linhas 29).
+-- todas as ``struct word`` (linha 27).
+Em seguida, elimina-se a própria àrvore -- todas as ``struct tree`` (linhas 28).
 
 Criação da árvore
 -----------------
 
-A árcore binária genérica é formada por nós do tipo  ``struct tree_node``.
+A árvore binária genérica é formada por nós do tipo  ``struct tree_node``.
 
 .. literalinclude:: ../../../code/data_structures/src/tree.c
    :language: c
@@ -50,7 +50,7 @@ A árcore binária genérica é formada por nós do tipo  ``struct tree_node``.
 Os campos ``left`` e ``right`` apontam, respetivamente, para as sub-árvores esquerda e direita.
 O campo ``data`` aponta para os dados de utilização.
 
-A associação chave/valor é baseada nos dados de utilização.
+A associação chave-valor é baseada nos dados de utilização.
 
 Uma árvore é representada por um ponteiro para o nó raíz.
 Uma árvore vazia não contém qualquer nó.
@@ -65,7 +65,8 @@ e a função de comparação ``word_cmp_text``.
 
 ``key`` é uma variável local, pois serve apenas para a operação de procura.
 Porque é que o ponteiro ``word_text``, que aponta para a palavra acabada de ler,
-não pode ser utilizada diretamente como chave de procura?
+não é utilizada diretamente como chave de procura? -- Para se reutilizar a mesma função de comparação
+utilizada na inserção de palavra (``word_cmp_text``).
 
 tree_search
 ...........
@@ -94,10 +95,7 @@ Nessa procura, a palavra que se pretende inserir (parâmetro ``data``)
 é comparada com as palavras já inseridas.
 A comparação é realizada por uma função específica,
 fornecida pelo código de utilização,
-no parâmetro ``compare``.
-
-Essa função recebe os ponteiros para a palavra corrente
-e para a palavra que se pretende inserir -- linha 11.
+no parâmetro ``compare`` (linha 11).
 
 Se a palavra já existir, caso em que a função de comparação devolve zero,
 é retornado o ponteiro para o nó corrente e não é inserido novo nó.
@@ -106,7 +104,7 @@ Quando se chega ao ponto em que já não há mais nós descendentes (``root == N
 é altura de criar um novo nó (linhas 4 a 9).
 
 O estabelecimento da ligação de um nó para o nó descendente
-é realizado na intância de chamada anterior à instância de criação (linhas 13 e 15).
+é realizado na intância de chamada anterior à instância de criação do novo nó (linhas 13 ou 15).
 
 .. literalinclude:: ../../../code/data_structures/src/tree.c
    :language: c
@@ -141,7 +139,8 @@ linha 28).
 tree_destroy
 ............
 
-A função ``tree_destroy`` liberta em cada instância a memória para o nó corrente,
+A função ``tree_destroy`` liberta a memória para o nó corrente,
+em cada instância de chamada,
 depois de ter percorrido recursivamente as sub-árvores esquerda e direita.
 
 .. literalinclude:: ../../../code/data_structures/src/tree.c

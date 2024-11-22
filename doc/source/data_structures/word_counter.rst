@@ -2,10 +2,10 @@ Programa de contagem de palavras
 ================================
 
 O programa de contagem de palavras engloba quatro fases:
-criação do contentor de palavras (linha 22);
-leitura e contabilização das palavras (linhas 12 a 22);
-apresentação dos resultados (linhas 23 a 26)
-e por fim a libertação dos recursos alocados (linha 45).
+criação do contentor de palavras (linha 4);
+leitura e contabilização das palavras (linhas 6 a 14);
+apresentação dos resultados (linhas 15 a 18)
+e por fim a libertação dos recursos alocados (linhas 19 e 20).
 
 As operações necessárias sobre o contentor de palavras são:
 a criação, a procura, a inserção, a consulta e a eliminação.
