@@ -133,7 +133,7 @@ A função ``fscanf`` aplica a conversão de texto indicada em ``format``
 
   int fscanf(FILE *stream, const char *format, ... );
 
-A função ``fgetc`` lê um carácter do dispositivo representado por ``stream``.
+A função ``fgetc`` lê um carácter do dispositivo representado por ``stream``. ::
 
    int fgetc(FILE *stream);
 
@@ -145,7 +145,7 @@ por segurança, devido não se poder controlar a escita na memória indicada por
    int scanf(const char *format, ...);
    int getchar();
 
-Especificações de conversão das funções da família  **scanf**:
+Especificações de conversão das funções da família  **scanf**: ::
 
 %*<width><lenght><conversion>
 
@@ -240,7 +240,8 @@ SEEK_CUR posiciona em relação à posição corrente
 SEEK_END posiciona em relação ao fim
 ======== ========================================
 
-:
+::
+
    long ftell(FILE *stream);
    int fsetpos(FILE *stream, const fpos_t *pos);
    int fgetpos(FILE *restrict stream, fpos_t *restrict pos);
@@ -259,7 +260,7 @@ Escrever no ficheiro representado por `stream`,
 uma sequência de **items** com dimensão ``nitens``,
 tendo cada **item** a dimensão ``size`` em *bytes*.
 Esta operação escreve no ficheiro um bloco de *bytes*,
-com a dimensão ``nitens * size`` *bytes* para a memória indicada por ``ptr``.
+com a dimensão ``nitens * size`` *bytes* para a memória indicada por ``ptr``. ::
 
    size_t fwrite(const void *ptr, size_t size, size_t nitems, FILE *stream);
 
@@ -278,7 +279,7 @@ Esta operação lê um bloco com a dimensão ``nitens * size`` *bytes* para a me
 
 A função ``ungetch`` recua de uma posição o indicador de posição do ficheiro
 e insere o valor do parâmetro ``c`` nessa posição.
-Útil na programação de interpretadores.
+Útil na programação de interpretadores. ::
 
    int ungetc(int c, FILE *stream);
 
@@ -296,7 +297,7 @@ Essa indicação "sim ou não" pode ser obtida posteriormente com ::
 ou obtida uma informação mais precisa através da variável ``errno``.
 
 A função ``perror`` imprime, em ``stderr``,
-uma mensagem descritiva do erro registado em ``errno``.
+uma mensagem descritiva do erro registado em ``errno``. ::
 
    void perror(const char *str);
 
@@ -304,7 +305,7 @@ A função ``clearerr`` elimina a indicação de erro ocorrido em operação ant
 
    void clearerr(FILE * stream);
 
-A função ``feof`` informa se foi tentado aceder para além do fim do ficheiro.
+A função ``feof`` informa se foi tentado aceder para além do fim do ficheiro. ::
 
    int feof(FILE *stream);
 

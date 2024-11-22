@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="16cm" height="6cm" viewBox="19 36 301 115" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="88" y="40" width="64" height="36" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="140" y="96">
+      <tspan x="140" y="96"></tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="156" y="96">
+      <tspan x="156" y="96"></tspan>
+    </text>
+    <rect style="fill: #d0d0d0; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="88" y="76" width="64" height="36" rx="0" ry="0"/>
+    <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="88" y="112" width="64" height="36" rx="0" ry="0"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="84" y="149.95">
+      <tspan x="84" y="149.95">0000 0000 0000 0000</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="84" y="41.95">
+      <tspan x="84" y="41.95">FFFF FFFF FFFF FFFF</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="84" y="113.95">
+      <tspan x="84" y="113.95">0000 7FFF FFFF FFFF</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="84" y="77.95">
+      <tspan x="84" y="77.95">FFFF 8000 0000 0000</tspan>
+    </text>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.4; stroke: #000000" d="M 152 40 C 160,40 152,60 160,60"/>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.4; stroke: #000000" d="M 152 76 C 160,76 152,60 160,60"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="164" y="61.95">
+      <tspan x="164" y="61.95">2^47 = 128 TByte</tspan>
+    </text>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.4; stroke: #000000" d="M 220 40 C 228,40 220,96 228,96"/>
+    <path style="fill: none; stroke-opacity: 1; stroke-width: 0.4; stroke: #000000" d="M 220 148 C 228,148 220,96 228,96"/>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="232" y="97.95">
+      <tspan x="232" y="97.95">2^64 &gt; 14 milhões de TByte</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="120" y="61.95">
+      <tspan x="120" y="61.95">kernel</tspan>
+    </text>
+    <text font-size="5.64444" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="120" y="133.95">
+      <tspan x="120" y="133.95">user</tspan>
+    </text>
+  </g>
+</svg>

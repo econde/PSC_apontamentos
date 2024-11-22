@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="8cm" height="10cm" viewBox="119 59 142 192" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Background"/>
+  <g id="Background">
+    <rect style="fill: #a8a8da; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="120" y="140" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="160" y="132.509">
+      <tspan x="160" y="132.509">.cc</tspan>
+    </text>
+    <rect style="fill: #99c1f1; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="120" y="60" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="150" y="72.625">
+      <tspan x="150" y="72.625">main.c</tspan>
+    </text>
+    <rect style="fill: #f9f06b; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="120" y="100" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="150" y="112.509">
+      <tspan x="150" y="112.509">main.i</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="150" y="152.509">
+      <tspan x="150" y="152.509">main.s</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="150" y1="120" x2="150" y2="136.329"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="150,139.329 148,135.329 150,136.329 152,135.329 "/>
+    </g>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="160" y="92.5094">
+      <tspan x="160" y="92.5094">.cpp</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="150" y1="80" x2="150" y2="96.3292"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="150,99.3292 148,95.3292 150,96.3292 152,95.3292 "/>
+    </g>
+    <rect style="fill: #a8a8da; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="200" y="140" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="240" y="132.625">
+      <tspan x="240" y="132.625">.cc</tspan>
+    </text>
+    <rect style="fill: #99c1f1; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="200" y="60" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="230" y="72.625">
+      <tspan x="230" y="72.625">calculate.c</tspan>
+    </text>
+    <rect style="fill: #f9f06b; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="200" y="100" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="232" y="112.509">
+      <tspan x="232" y="112.509">calculate.i</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="232" y="152.509">
+      <tspan x="232" y="152.509">calculate.s</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="230" y1="120" x2="230" y2="136.329"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="230,139.329 228,135.329 230,136.329 232,135.329 "/>
+    </g>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="240" y="92.625">
+      <tspan x="240" y="92.625">.cpp</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="230" y1="80" x2="230" y2="95.8262"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="230,98.8262 228,94.8262 230,95.8262 232,94.8262 "/>
+    </g>
+    <rect style="fill: #8ff0a4; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="120" y="180" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="160" y="172.509">
+      <tspan x="160" y="172.509">.as</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="150" y1="160" x2="150" y2="176.329"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="150,179.329 148,175.329 150,176.329 152,175.329 "/>
+    </g>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="150" y="192.509">
+      <tspan x="150" y="192.509">main.o</tspan>
+    </text>
+    <rect style="fill: #8ff0a4; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="200" y="180" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="240" y="172.625">
+      <tspan x="240" y="172.625">.as</tspan>
+    </text>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="230" y="192.625">
+      <tspan x="230" y="192.625">calculate.o</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="230" y1="160" x2="230" y2="176.329"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="230,179.329 228,175.329 230,176.329 232,175.329 "/>
+    </g>
+    <rect style="fill: #deddda; fill-opacity: 1; stroke-opacity: 1; stroke-width: 1; stroke: #000000" x="160" y="230" width="60" height="20" rx="0" ry="0"/>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="190" y="242.509">
+      <tspan x="190" y="242.509">a.out</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="150" y1="200" x2="187.063" y2="227.798"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="189.463,229.598 185.063,228.798 187.063,227.798 187.463,225.598 "/>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" x1="230" y1="200" x2="192.937" y2="227.798"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.6; stroke: #000000" fill-rule="evenodd" points="190.537,229.598 192.537,225.598 192.937,227.798 194.937,228.798 "/>
+    </g>
+    <text font-size="6.77333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="190" y="212.625">
+      <tspan x="190" y="212.625">ld</tspan>
+    </text>
+  </g>
+</svg>

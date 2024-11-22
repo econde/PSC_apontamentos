@@ -4,6 +4,7 @@ Lista ligada
 São realizadas várias versões do programa para exemplificar a utilização
 de diversos tipos de lista e técnicas de programação em linguagem C.
 Designadamente:
+
    * lista simplesmente ligada;
    * lista duplamente ligada;
    * lista não intrusiva;
