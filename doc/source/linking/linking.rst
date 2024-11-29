@@ -239,7 +239,7 @@ O seu conteúdo é essencialmente composto por um cabeçalho e um conjunto de bl
 Secções
 .......
 
- .. code-block:: console
+.. code-block:: console
 
    $ readelf -S calculate.o
 
@@ -620,29 +620,252 @@ Momentos importantes na vida de um programa:
 
 Código independente da posição (PIC)
 ====================================
-   
+
+Considere-se o ficheiro ``main.c`` como o código fonte do programa executável
+e o ficheiro ``libpic.c`` como o código fonte da biblioteca.
+
+Nestas experiências foram utilizados o gcc 13.2.0 e o binutils 2.40.50.20230331.
+
++------------------------------------------------------+--------------------------------------------------------+
+| .. literalinclude:: ../../../code/pic/main.c         | .. literalinclude:: ../../../code/pic/libpic.c         |
+|    :language: c                                      |    :language: c                                        |
+|    :caption: main.c                                  |    :caption: libpic.c                                  |
++------------------------------------------------------+--------------------------------------------------------+
+
+Os ficheiros objeto são produzidos sob o controlo do seguinte *makefile*:
+
+.. literalinclude:: ../../../code/pic/makefile
+   :language: c
+   :caption: makefile
+
 Acesso a variáveis
 ------------------
+
+Os acessos que interessa analisar são a variáveis globais.
 
 Acesso a variáveis a partir da aplicação
 ........................................
 
+As variáveis globais, as definidas no executável (``prog_var´´)
+e as definidas na biblioteca (``lib_var``),
+são mapeadas na secção ``.data`` do executável.
+
+Os acessos são realizados com endereçamento relativo ao RIP
+e o seu endereço é determinado em tempo de compilação (*compile time*).
+
+.. code-block:: console
+   :emphasize-lines: 5,6
+   
+   $ objdump -d main
+   
+   0000000000001169 <prog_func>:
+    1169:	f3 0f 1e fa          	endbr64
+    116d:	8b 05 a5 2e 00 00    	mov    0x2ea5(%rip),%eax        # 4018 <lib_var@@Base>
+    1173:	03 05 97 2e 00 00    	add    0x2e97(%rip),%eax        # 4010 <prog_var>
+    1179:	c3                   	ret
+
 Acesso a variáveis a partir da biblioteca
 .........................................
+
+A posição das variáveis, relativamente ao código da biblioteca,
+só é determinável em tempo de carregamento *load time*.
+
+O acesso a estas variáveis é feito via tabela GOT (Global Offset Table)
+quer sejam definidas no executável quer sejam definidas na biblioteca.
+
+Observar o código de acesso às variáveis globais ``prog_var`` e ``lib_var`` (instruções de 111e a 112e):
+
+.. code-block:: console
+   :emphasize-lines: 6-9
+   
+   $ objdump -d libpic.so
+
+   0000000000001119 <lib_func1>:
+    1119:	f3 0f 1e fa          	endbr64
+    111d:	53                   	push   %rbx
+    111e:	48 8b 1d b3 2e 00 00 	mov    0x2eb3(%rip),%rbx        # 3fd8 <prog_var>
+    1125:	8b 13                	mov    (%rbx),%edx
+    1127:	48 8b 05 8a 2e 00 00 	mov    0x2e8a(%rip),%rax        # 3fb8 <lib_var-0x58>
+    112e:	89 10                	mov    %edx,(%rax)
+    1130:	e8 1b ff ff ff       	call   1050 <prog_func@plt>
+    1135:	89 03                	mov    %eax,(%rbx)
+    1137:	5b                   	pop    %rbx
+    1138:	c3
+
+A tabela **GOT** tem uma entrada por cada variável externa referida.
+
+Cada módulo em biblioteca possui umaa secção ``.got`` onde é alojada a tabela **GOT**.
+
+Esta secção é localizada a uma distância fixa em relação à secção ``.text``,
+determinada em tempo de compilação.
+
+O acesso ao conteúdo da tabela GOT é realizado com endereçamento relativo ao RIP.
+
+Durante o carregamento do programa,
+as entradas da tabela GOT são preenchidas pelo *linker* dinâmico,
+na fase de relocalização, com o endereço absoluto das variáveis.
+
+A instrução ``mov 0x2ebe(%rip),%rbx`` coloca em RBX o conteúdo da entrada da GOT
+relativa à variável ``prog_var``, que é o endereço absoluto desta variável.
+
+A instrução ``mov (%rbx), %edx carrega o conteúdo de ``prog_var`` em EDX.
 
 Invocação de funções
 --------------------
 
+Tal como nas variáveis, o endereço das funções da biblioteca só é determinado em tempo de carregamento.
+O acesso ao endereço das funções para chamadas entre executável e biblioteca
+é diferente do utilizado para as variáveis. Mas poderia ser igual.
+
+O objetivo é manter o código de invocação de função igual,
+quer na ligação estática quer na ligação dinâmica, isto é,
+não é necessário gerar o código de utilizador diferente para cada tipo de ligação.
+No caso de ligação estática chama a função diretamente, no caso de ligação dinâmica chama a  PLT.
+
 Invocação de funções da biblioteca a partir do programa
 .......................................................
 
+.. code-block:: console
+   :emphasize-lines: 6-8
+   
+   $ objdump -d main
+   
+   000000000000117a <main>:
+    117a:	f3 0f 1e fa          	endbr64
+    117e:	48 83 ec 08          	sub    $0x8,%rsp
+    1182:	e8 e9 fe ff ff       	call   1070 <lib_func1@plt>
+    1187:	e8 d4 fe ff ff       	call   1060 <lib_func2@plt>
+    118c:	e8 d8 ff ff ff       	call   1169 <prog_func>
+    1191:	48 83 c4 08          	add    $0x8,%rsp
+    1195:	c3                   
+
+A chamada a funções de biblioteca é feita por via da PLT (Procedure Linkage Table).
+A partir da versão 8 do compilador GCC, passou a haver uma secção PLT primária ``.plt``
+e uma secção PLT secundária ``.plt.sec``.
+
+.. code-block:: console
+   :emphasize-lines: 7-9
+   
+   $ objdump -d main --section=.plt
+
+   0000000000001020 <.plt>:
+    1020:	ff 35 92 2f 00 00    	push   0x2f92(%rip)   # 3fb8 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1026:	ff 25 94 2f 00 00    	jmp    *0x2f94(%rip)  # 3fc0 <_GLOBAL_OFFSET_TABLE_+0x10>
+    102c:	0f 1f 40 00          	nopl   0x0(%rax)
+    1030:	f3 0f 1e fa          	endbr64
+    1034:	68 00 00 00 00       	push   $0x0
+    1039:	e9 e2 ff ff ff       	jmp    1020 <_init+0x20>
+    103e:	66 90                	xchg   %ax,%ax
+    1040:	f3 0f 1e fa          	endbr64
+    1044:	68 01 00 00 00       	push   $0x1
+    1049:	e9 d2 ff ff ff       	jmp    1020 <_init+0x20>
+    104e:	66 90                	xchg   %ax,%ax
+
+.. code-block:: console
+   :emphasize-lines: 7-9
+   
+   $ objdump -d main --section=.plt.sec
+
+   0000000000001060 <lib_func2@plt>:
+    1060:	f3 0f 1e fa          	endbr64
+    1064:	ff 25 5e 2f 00 00    	jmp    *0x2f5e(%rip)        # 3fc8 <lib_func2@Base>
+    106a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   0000000000001070 <lib_func1@plt>:
+    1070:	f3 0f 1e fa          	endbr64
+    1074:	ff 25 56 2f 00 00    	jmp    *0x2f56(%rip)        # 3fd0 <lib_func1@Base>
+    107a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+Em cada entrada de ``.plt.sec`` existe um *jump* indireto sobre uma entrada da tabela GOT.
+Por exemplo, na chamada à função ``lib_func1``, a instrução ``jmpq *0x2f56(%rip)``
+acede à entrada GOT de endereço ``0x3fd0`` onde se encontra o endereço absoluto da função ``lib_func1``.
+
+O *linker* aplica um procedimento designado por *lazy binding*
+que consiste em protelar a atualização da entrada GOT para o momento da primeira chamada.
+Até lá, todas as entradas da tabela GOT apontam para a PLT primária.
+
+Essa secção contém um array em que cada entrada corresponde a uma função
+e contém uma sequência **push/jmp**.
+A instrução **push** carrega no *stack* um argumento
+que corresponde ao número identificador da função e em seguida a instrução **jmp** salta para a PLT[0] 
+que por sua vez invoca o *linker* dinâmico apontado por GOT[2].
+
+.. literalinclude:: pic.txt
+   :language: console
+
+Chamada à função ``lib_func1`` -- **primeira vez**
+
+   #. (RIP = 1182) Chamar a função ``lib_func1`` a partir da função ``main`` -- salta para ``.plt.sec[1]``.
+   #. (RIP = 1070) Na ``.plt.sec[1]`` salta para o endereço contido na GOT[4].
+      Da primeira esse endereço é PLT[1].
+   #. (RIP = 1030) Empilhar o identificador da função ``lib_func1`` (``pushq 0x0``) e saltar para PLT[0].
+   #. (RIP = 1020) Em PLT[0], depois de empilhar GOT[1], salta para GOT[2] que é o endereço do *linker* dinâmico.
+      O *linker*, baseado nos parâmetros recebidos, substitui o conteúdo de GOT[4]
+      pelo endereço de execução de ``lib_func1``.
+
+Chamada à função ``lib_func1`` -- **vezes seguintes**
+
+   #. (RIP = 1182) Chamar a função ``lib_func1`` a partir da função ``main`` -- salta para ``.plt.sec[1]``.
+   #. (RIP = 1070) Na ``.plt.sec[1]`` salta para o endereço contido na GOT[4].
+      Esse endereço agora é o endereço de ``lib_func1``.
+   
 Invocação de funções do programa a partir da biblioteca
 .......................................................
+
+A operação de chamada a função a partir da biblioteca é idêntica à do sentido contrário.
+(Serve apenas como exercício.)
+
+.. code-block:: console
+   :emphasize-lines: 10
+
+   $ objdump -d libpic.so   
+
+   0000000000001119 <lib_func1>:
+    1119:	f3 0f 1e fa          endbr64
+    111d:	53                   push   %rbx
+    111e:	48 8b 1d b3 2e 00 00 mov    0x2eb3(%rip),%rbx        # 3fd8 <prog_var>
+    1125:	8b 13                mov    (%rbx),%edx
+    1127:	48 8b 05 8a 2e 00 00 mov    0x2e8a(%rip),%rax        # 3fb8 <lib_var-0x58>
+    112e:	89 10                mov    %edx,(%rax)
+    1130:	e8 1b ff ff ff       call   1050 <prog_func@plt>
+    1135:	89 03                mov    %eax,(%rbx)
+    1137:	5b                   pop    %rbx
+    1138:	c3                   ret
+
+.. code-block:: console
+   :emphasize-lines: 10
+
+   $ objdump -d libpic.so --section=.plt
+
+   0000000000001020 <.plt>:
+    1020:	ff 35 ca 2f 00 00    push   0x2fca(%rip)        # 3ff0 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1026:	ff 25 cc 2f 00 00    jmp    *0x2fcc(%rip)       # 3ff8 <_GLOBAL_OFFSET_TABLE_+0x10>
+    102c:	0f 1f 40 00          nopl   0x0(%rax)
+    1030:	f3 0f 1e fa          endbr64
+    1034:	68 00 00 00 00       push   $0x0
+    1039:	e9 e2 ff ff ff       jmp    1020 <_init+0x20>
+    103e:	66 90                xchg   %ax,%ax
+ 
+.. code-block:: console
+   :emphasize-lines: 10
+
+   $ objdump -d libpic.so --section=.plt.sec
+
+   0000000000001050 <prog_func@plt>:
+    1050:	f3 0f 1e fa          endbr64
+    1054:	ff 25 a6 2f 00 00    jmp    *0x2fa6(%rip)        # 4000 <prog_func>
+    105a:	66 0f 1f 44 00 00    nopw   0x0(%rax,%rax,1)
 
 Referências
 ===========
 
-How To Write Shared Libraries https://www.akkadia.org/drepper/dsohowto.pdf
+   * `Computer Systems -- A Programmer's Perpective; Chapter 7 -- Linking
+     <https://www.pearson.com/en-us/subject-catalog/p/compute.. literalinclude:: ../../../code/pic/makefile
+   :language: c
+   :caption: makefiler-systems-a-programmers-perspective/P200000003479/9780138105396>`_
+
+   * `Executable and Linkable Format <https://en.wikipedia.org/wiki/Executable_and_Linkable_Format>`_
+
+   * `How To Write Shared Libraries <https://www.akkadia.org/drepper/dsohowto.pdf>`_
 
 
 .. rubric:: Notas de rodapé

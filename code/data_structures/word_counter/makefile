@@ -1,5 +1,5 @@
 
-CFLAGS = -c -g -Werror -Wall -I../include -std=c2x
+CFLAGS = -c -g -Werror -Wall -I../include -std=c2x -Og
 
 LFLAGS=
 

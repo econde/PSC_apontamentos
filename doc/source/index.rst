@@ -31,4 +31,5 @@ Apontamentos de PSC
    assembly_x86_64/assembly_x86_64.rst
    data_structures/data_structures.rst
    linking/linking.rst
+   libraries/libraries.rst
    makefile/makefile.rst

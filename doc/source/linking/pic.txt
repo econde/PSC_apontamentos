@@ -1,0 +1,48 @@
+.plt        [0]     1020    ff 35 92 2f 00 00   push   0x2f92(%rip)      # 3fb8 <GOT+0x8>
+                    1026    ff 25 94 2f 00 00   jmp    *0x2f94(%rip)     # 3fc0 <GOT+0x10>
+                    102c    0f 1f 40 00         nopl   0x0(%rax)
+            [1]     1030    f3 0f 1e fa         endbr64
+                    1034    68 00 00 00 00      push   $0x0
+                    1039    e9 e2 ff ff ff      jmp    1020 <_init+0x20>
+                    103e    66 90               xchg   %ax,%ax
+            [2]     1040    f3 0f 1e fa         endbr64
+                    1044    68 01 00 00 00      push   $0x1
+                    1049    e9 d2 ff ff ff      jmp    1020 <_init+0x20>
+                    104e    66 90               xchg   %ax,%ax
+             
+.plt.sec    [0]     1060    f3 0f 1e fa          endbr64
+                    1064    ff 25 5e 2f 00 00    jmp    *0x2f5e(%rip)     # 3fc8 <lib_func2@Base>
+                    106a    66 0f 1f 44 00 00    nopw   0x0(%rax,%rax,1)                                                                  1060       endbr64
+            [1]     1070    f3 0f 1e fa          endbr64
+                    1074    ff 25 56 2f 00 00    jmp    *0x2f56(%rip)     # 3fd0 <lib_func1@Base>
+                    107a    66 0f 1f 44 00 00    nopw   0x0(%rax,%rax,1)                                                                  1060       endbr64
+
+.text       main:   117a    f3 0f 1e fa          endbr64
+                    117e    48 83 ec 08          sub    $0x8,%rsp
+                    1182    e8 e9 fe ff ff       call   1070 <lib_func1@plt>
+                    1187    e8 d4 fe ff ff       call   1060 <lib_func2@plt>
+                    118c    e8 d8 ff ff ff       call   1169 <prog_func>
+                    1191    48 83 c4 08          add    $0x8,%rsp
+                    1195    c3
+                                      	ret
+.got        [0]     3fb0       address of .dynamic 0x3db0
+            [1]     3fb8       address of reloc entries
+            [2]     3fc0       address of dynamic linker
+            [3]     3fc8       address of lib_func2
+            [4]     3fd0       address of lib_func1
+            [5]     3fd8
+            [6]     3fe0
+            [7]     3fe8
+            [8]     3ff0
+            [9]     3ff8
+.data                    4000
+                         4008
+            prog_var:    4010
+.bss        lib_var:     4018
+
+
+
+
+
+
+
