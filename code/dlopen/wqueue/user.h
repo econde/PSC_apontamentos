@@ -1,9 +1,9 @@
 #ifndef USER_H
 #define USER_H
 
-typedef struct User {
-	struct User *next, *prev;
+struct user {
+	struct user *next, *prev;
 	char *name;
-} User;
+};
 
 #endif

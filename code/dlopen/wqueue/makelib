@@ -1,8 +1,8 @@
-libpurge.so: purge.o
-	gcc -shared purge.o -o libpurge.so
+libtoempty.so: toempty.o
+	gcc -shared toempty.o -o libtoempty.so
 
-purge.o: purge.c
-	gcc -c -fpic purge.c
+toempty.o: toempty.c
+	gcc -c -fpic toempty.c
 
 clean:
-	rm -rf *.o libpurge.so
+	rm -rf *.o libtoempty.so

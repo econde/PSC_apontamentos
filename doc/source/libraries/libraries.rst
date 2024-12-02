@@ -350,24 +350,32 @@ pkg-config
 ----------
 
 O utilitário ``pkg-config`` permite obter informação sobre bibliotecas instaladas.
-Essa informação inclui opções de compilação e caminhos para os locais de instalação dos ficheiros binários
-e dos ficheiros de inclusão.
+Essa informação inclui as opções de compilação e de ligação necessárias
+para utilizar uma dada biblioteca.
 
 **Exemplo**
 
-::
+.. code-block:: console
 
    $ pkg-config glib-2.0 -libs
 
    -lglib-2.0 
 
+Indica que para ligar com a biblioteca Glib deve ser incluida a opção ``-lglib-2`` na linha de comando do ``ld``.
+
+.. code-block:: console
+
    $ pkg-config glib-2.0 -cflags
 
    -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include 
 
-A informação é guardada em ficheiros com a extensão ``.pc``, um por cada biblioteca.
+Indica que para encontrar o ficheiro de inclusão da biblioteca Glib devem
+ser usada as opções de compilação ``-I/usr/include/glib-2.0`` e ``-I/usr/lib/x86_64-linux-gnu/glib-2.0/include``.
 
-::
+A informação relativa a cada biblioteca é guardada em ficheiros com a extensão ``.pc``
+que se encontram num dos seguintes locais:
+
+.. code-block:: console
 
    $ find /usr/ -name "pkgconfig"
 
@@ -376,18 +384,25 @@ A informação é guardada em ficheiros com a extensão ``.pc``, um por cada bib
    /usr/lib/pkgconfig
    /usr/lib/x86_64-linux-gnu/pkgconfig
 
+
+.. code-block:: console
+
    $ ls -l /usr/lib/x86_64-linux-gnu/pkgconfig/
 
-   total 368
-   -rw-r--r-- 1 root root  283 Mar 31  2024 alsa.pc
-   -rw-r--r-- 1 root root  660 Apr 22  2024 autoopts.pc
-   -rw-r--r-- 1 root root  208 Aug  9 03:33 blkid.pc
-   -rw-r--r-- 1 root root  648 Aug  9 03:33 dbus-1.pc
-   -rw-r--r-- 1 root root  188 Apr  8  2024 egl.pc
-   -rw-r--r-- 1 root root  289 Sep 10 11:17 expat.pc
-   -rw-r--r-- 1 root root  448 Mar 31  2024 fontconfig.pc
-   -rw-r--r-- 1 root root  363 Mar 31  2024 freetype2.pc
+   total 432
+   -rw-r--r-- 1 root root  283 mar 31  2024 alsa.pc
+   -rw-r--r-- 1 root root  648 ago  9 03:33 dbus-1.pc
+   -rw-r--r-- 1 root root  289 set 10 11:17 expat.pc
+   -rw-r--r-- 1 root root  427 mar 31  2024 geany.pc
+   -rw-r--r-- 1 root root  761 nov 13 17:42 gio-2.0.pc
+   -rw-r--r-- 1 root root  211 nov 13 17:42 gio-unix-2.0.pc
+   -rw-r--r-- 1 root root  522 nov 13 17:42 glib-2.0.pc
 
+Nas linhas 18 e 20 pode-se ver a informação destinada a responder às perguntas ``-libs`` e ``cflag``.
+
+.. code-block:: console
+   :linenos:
+   
    $ cat /usr/lib/x86_64-linux-gnu/pkgconfig/glib-2.0.pc 
 
    prefix=/usr
@@ -417,7 +432,7 @@ da uma aplicação -- não apenas no momento do arranque da aplicação.
 
 API para carregamento de bibliotecas em tempo de execução:
 
-::
+.. code-block:: c
 
    #include <dfcn.h> 
    void *dlopen(const char *filename, int flags);
@@ -450,7 +465,7 @@ Fonte do programa executável:
 
 Para gerar o executável:
 
-::
+.. code-block:: console
 
    $ gcc main.c -ldl -o main
 
@@ -463,13 +478,13 @@ Fonte do programa em biblioteca:
 
 Geração da biblioteca de ligação dinâmica:
 
-::
+.. code-block:: console
 
    $ gcc -fpic lib_func.c -shared -o lib_func.so
 
 **1ª experiência**
 
-::
+.. code-block:: console
 
    $ ./main
    usage: ./main libXXX.so
@@ -478,7 +493,7 @@ Não foi indicado o ficheiro da biblioteca.
 
 **2ª experiência**
 
-::
+.. code-block:: console
 
    $ ./main lib_func.so
 
@@ -489,7 +504,7 @@ porque a diretoria corrente não se encontra nos caminhos de procura de bibliote
 
 3ª experência
 
-::
+.. code-block:: console
 
    $ export LD_LIBRAY_PATH=.
    $ ./main lib_func.so
@@ -501,11 +516,19 @@ porque a diretoria corrente não se encontra nos caminhos de procura de bibliote
 
 Habilitar o programa de simulação de fila de espera para aceitar
 a incorporação de novos comandos através da ligação dinâmica em execução (*plugin*).
+
+:numref:`data_structures_double_link_list`
+
 Os comandos do programa são agrupados numa lista ligada em que a informação relativa
 a cada comando é composta pelo ponteiro para a função que executa o comando,
 a descrição textual do comando e a letra identificadora.
 
-A incorporação de novo comando é realizada pela função ``commando_new`` (linhas 36 a 58).
+.. literalinclude:: ../../../code/dlopen/wqueue/wqueue.c
+   :language: c
+   :lines: 101-133
+   :caption: wqueue.c
+   
+A incorporação de novo comando é realizada pela função ``commando_new``.
 Esta função recebe o nome do ficheiro contendo o *shared object*
 e extrai através da função ``dlsym`` os ponteiros para os elementos do novo comando.
 
@@ -514,11 +537,13 @@ o novo comando passa a estar disponível, a par dos comandos originais.
 
 .. literalinclude:: ../../../code/dlopen/wqueue/wqueue.c
    :language: c
+   :lines: 135-160
    :caption: wqueue.c
 
-O executável é gerado sob o controlo do seguinte ``makefile``:
+O executável é gerado sob o controlo do seguinte *makefile*:
 
 .. literalinclude:: ../../../code/dlopen/wqueue/makefile
+   :linenos:
    :caption: makefile
 
 A criação de um novo comando consiste em gerar um *shared object*
@@ -527,39 +552,42 @@ a descrição textual e a letra identificadora.
 
 Em seguida exemplifica-se a criação de um comando para vazar a fila de espera.
 
-.. literalinclude:: ../../../code/dlopen/wqueue/purge.c
+.. literalinclude:: ../../../code/dlopen/wqueue/toempty.c
    :language: c
-   :caption: purge.c
+   :caption: toempty.c
 
 Os elementos do comando são obrigatoriamente designados pelos símbolos 
 ``command_function``, ``command_letter`` e ``command_description``,
 pois serão estes os símbolos utilizados por parte do programa executável,
 ao invocar a função ``dlsym`` (linhas 40, 45 e 50).
 
-O shared object é gerado sob o controlo do seguinte makefile:
+O *shared object* é gerado sob o controlo do seguinte *makefile*:
 
 .. literalinclude:: ../../../code/dlopen/wqueue/makelib
+   :linenos:
    :caption: makelib
 
 **1ª experiência**
 
 Remover a opção ``-rdynamic`` da linha de geração do executável ``wqueue``.
 
-::
+.. code-block:: console
 
-   $ .wqueue
-   >c ./libpurge.so
-   ./libpurge.so: undefined symbol: queue
+   $ ./wqueue
+   
+   >c ./libtoempty.so
+   ./libtoempty.so: undefined symbol: queue
    >
    
-Este erro deve-se ao facto de o programa executável, por omissão,
+Este erro deve-se ao programa executável, por omissão,
 não exportar símbolos para ligação dinâmica com os *shared objects*.
 A referência indefinida ao símbolo externo ``queue``,
-existente em ``libpurge.so``, não poder ser resolvida pelo *linker* dinâmico.
+existente em ``libtoempty.so``, não poder ser resolvida pelo *linker* dinâmico.
 
-::
+.. code-block:: console
 
-   $ readelf --dyn-syms libpurge.so 
+   $ readelf --dyn-syms libtoempty.so
+   
    Symbol table '.dynsym' contains 10 entries:
       Num:    Value          Size Type    Bind   Vis      Ndx Name
    	...
@@ -571,9 +599,11 @@ só fica disponível para ligação dinâmica,
 se o executável for gerado com a opção ``-rdynamic`` (linha 4 do makefile).
 
 Nessa altura todos os símbolos globais são incluídos na tabela de símbolos de ligação dinâmica.
-::
+
+.. code-block:: console
 
    $ readelf --dyn-syms wqueue
+
    Symbol table '.dynsym' contains 40 entries:
       Num:    Value          Size Type    Bind   Vis      Ndx Name
    	...	
@@ -582,12 +612,14 @@ Nessa altura todos os símbolos globais são incluídos na tabela de símbolos d
 
 **2ª experiência**
 
-Depois de o programa executável ser produzido com a opção -rsymbol a ligação dinâmica do símbolo queue sucede bem e o código acabado de carregar pode ser utilizado.
+Depois de o programa executável ser produzido com a opção ``-rsymbol``,
+a ligação dinâmica do símbolo ``queue`` sucede bem e o código acabado de carregar pode ser utilizado.
 
-::
+.. code-block:: console
 
-   $ ./wqueue 
-   >c libpurge.so
+   $ ./wqueue
+
+   >c libtoempty.so
    >h
    k        - Eliminar todos os utentes da fila de espera
    n <nome> - Chegada de novo utente
@@ -611,7 +643,7 @@ Por essa razão as bibliotecas são colocadas, na linha de comando, depois dos f
 
 Inverter a ordem de colocação da biblioteca em relação ao objeto ``main.o``.
 
-::
+.. code-block:: console
 
 $ gcc libdemo.a main.o -o main
 
