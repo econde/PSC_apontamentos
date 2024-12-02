@@ -1,3 +1,5 @@
+.. _data-structures-waiting-queue:
+
 Programa de simulação de fila de espera
 =======================================
 

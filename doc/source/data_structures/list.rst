@@ -1,5 +1,3 @@
-.. _data_structures_double_link_list:
-
 Lista ligada
 ============
 
@@ -147,7 +145,7 @@ depois de ``free(user)``.
    :lines: 112-119
    :linenos:
 
-
+.. _data-structures-double-linked-list:
 
 Lista duplamente ligada
 -----------------------

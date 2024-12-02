@@ -470,7 +470,7 @@ Para gerar o executável:
    $ gcc main.c -ldl -o main
 
 
-Fonte do programa em biblioteca:
+Fonte do código em biblioteca:
 
 .. literalinclude:: ../../../code/dlopen/lib_func/lib_func.c
    :language: c
@@ -514,10 +514,12 @@ porque a diretoria corrente não se encontra nos caminhos de procura de bibliote
 
 **Exemplo**
 
-Habilitar o programa de simulação de fila de espera para aceitar
-a incorporação de novos comandos através da ligação dinâmica em execução (*plugin*).
+Habilitar um programa executável a incorporar novas funcionalidades,
+através da ligação dinâmica em execução (*plugin*).
 
-:numref:`data_structures_double_link_list`
+O exemplo baseia-se no programa de simulação de fila de espera
+tratado em :ref:`data-structures-waiting-queue` na versão
+:ref:`data-structures-double-linked-list`.
 
 Os comandos do programa são agrupados numa lista ligada em que a informação relativa
 a cada comando é composta pelo ponteiro para a função que executa o comando,
