@@ -601,7 +601,7 @@ Ao lançar um processo, o Linux faz a seguinte ocupação do espaço de endereç
 Os endereços de execução são atribuídos aleatoriamente
 no momento do carregamento do programa em memória.
 
-O insight atribui endereços fixos.
+O Insight atribui endereços fixos.
 
 Os endereços atribuido a um processo podem ser observados assim:
 
@@ -613,11 +613,38 @@ Os endereços atribuido a um processo podem ser observados assim:
    
 Momentos importantes na vida de um programa:
 
-   * compilação (*compile time*)
-   * ligação (*link time*)
-   * carregamento (*load time*)
-   * execução (*run time*)
+   * compilação (*compile time*) -- tradução de linguagem de programação para código máquina.
+   * ligação (*link time*) -- composicão de programa com base em código máquina de várias proveniências.
+   * carregamento (*load time*) -- criação do ambiente de execução de um programa.
+   * execução (*run time*) -- programa em execuçã.
 
+Carregamento no arranque da aplicação
+-------------------------------------
+
+O *loader* carrega o programa e verifica se existe uma secção ``.interp`` com a indicação do *linker* dinâmico:
+
+::
+
+   $ readelf -x .interp main
+ 
+   Hex dump of section '.interp':
+     0x00000318 2f6c6962 36342f6c 642d6c69 6e75782d /lib64/ld-linux-
+     0x00000328 7838362d 363
+
+O *linker* dinâmico realiza as seguintes operações:
+
+   #. Mapeia as secções de dados e de código
+      das bibliotecas dinâmicas que vão ser utilizadas
+      no espaço de memória do processo;
+
+   #. Resolve as referências existentes no programa para dados e código das bibliotecas.
+      Esta operação não utiliza o processo das *relocations* porque isso implicaria alterações de código.
+      É resolvido via PLT/GOT.
+
+.. figure:: physical_address_space.svg
+   :align: center
+   :scale: 120
+   
 Código independente da posição (PIC)
 ====================================
 
@@ -632,11 +659,12 @@ Nestas experiências foram utilizados o gcc 13.2.0 e o binutils 2.40.50.20230331
 |    :caption: main.c                                  |    :caption: libpic.c                                  |
 +------------------------------------------------------+--------------------------------------------------------+
 
-Os ficheiros objeto são produzidos sob o controlo do seguinte *makefile*:
+Os ficheiros objeto são produzidos sob o controlo dos seguintes *makefiles*:
 
-.. literalinclude:: ../../../code/pic/makefile
-   :language: c
-   :caption: makefile
++------------------------------------------------------+------------------------------------------------------+
+| .. literalinclude:: ../../../code/pic/makefile       | .. literalinclude:: ../../../code/pic/makelib        |
+|    :caption: makefile                                |    :caption: makelib                                 |
++------------------------------------------------------+------------------------------------------------------+
 
 Acesso a variáveis
 ------------------
@@ -694,12 +722,13 @@ Observar o código de acesso às variáveis globais ``prog_var`` e ``lib_var`` (
 
 A tabela **GOT** tem uma entrada por cada variável externa referida.
 
-Cada módulo em biblioteca possui umaa secção ``.got`` onde é alojada a tabela **GOT**.
+Cada módulo em biblioteca possui uma secção ``.got`` onde é alojada a tabela **GOT**.
 
 Esta secção é localizada a uma distância fixa em relação à secção ``.text``,
 determinada em tempo de compilação.
 
-O acesso ao conteúdo da tabela GOT é realizado com endereçamento relativo ao RIP.
+O acesso ao conteúdo da tabela GOT é realizado com endereçamento relativo ao RIP,
+como às variáveis nas secções de dados.
 
 Durante o carregamento do programa,
 as entradas da tabela GOT são preenchidas pelo *linker* dinâmico,
@@ -859,9 +888,7 @@ Referências
 ===========
 
    * `Computer Systems -- A Programmer's Perpective; Chapter 7 -- Linking
-     <https://www.pearson.com/en-us/subject-catalog/p/compute.. literalinclude:: ../../../code/pic/makefile
-   :language: c
-   :caption: makefiler-systems-a-programmers-perspective/P200000003479/9780138105396>`_
+     <https://www.pearson.com/en-us/subject-catalog/p/computer-systems-a-programmers-perspective/P200000003479/9780138105396>`_
 
    * `Executable and Linkable Format <https://en.wikipedia.org/wiki/Executable_and_Linkable_Format>`_
 

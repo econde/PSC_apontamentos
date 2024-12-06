@@ -1,0 +1,9 @@
+CFLAGS = -c -Wall -std=c2x -g -Og
+
+all: libpic.so
+
+libpic.o: libpic.c
+	gcc $(CFLAGS) -fPIC libpic.c -o libpic.o
+
+libpic.so: libpic.o
+	gcc -shared -o libpic.so libpic.o

@@ -9,7 +9,7 @@ Se o código em biblioteca for carregado em memória,
 apenas quando for invocado pela aplicação,
 designa-se por ligação dinâmica.
 
-.. list-table:: Title
+.. list-table::
    :widths: 25 25 25
    :header-rows: 1
 
@@ -18,13 +18,17 @@ designa-se por ligação dinâmica.
      - Ligação dinâmica
    * - Vantagens
      - * Execução mais rápida.
-     - * Ficheiros objeto executáveis menores.
-       * Em caso de atualização da biblioteca não é necessário gerar novamente aplicação.
-       * Permite que o mesmo código seja usado por várias aplicações em simultâneo.
+     - * Os ficheiros objeto executáveis menores.
+       * Em caso de atualização da biblioteca
+         não é necessário gerar novamente aplicação.
+       * Permite que o mesmo código seja usado por
+         várias aplicações em simultâneo.
    * - Desvantagens
      - * Os ficheiros objeto executáveis são mais longos.
-       * Em caso de atualização é necessário gerar novamente a aplicação.
-     - * O tempo de procura da biblioteca e a resolução de símbolos afeta o tempo de execução do programa.
+       * Em caso de atualização é necessário
+         gerar novamente a aplicação.
+     - * O tempo de procura da biblioteca e a resolução
+         de símbolos afeta o tempo de execução do programa.
 
 Tomemos como exemplo os ficheiros ``stack.c`` e ``fifo.c``
 que implementam estruturas para armazenamento de conjuntos de números.
@@ -248,32 +252,6 @@ as bibliotecas no sistema de ficheiros por esta ordem:
          
             $ sudo ldconfig
 
-Carregamento no arranque da aplicação
--------------------------------------
-O *loader* carrega o programa e verifica se existe uma secção ``.interp`` com a indicação do *linker* dinâmico:
-
-::
-
-   $ readelf -x .interp main
- 
-   Hex dump of section '.interp':
-     0x00000318 2f6c6962 36342f6c 642d6c69 6e75782d /lib64/ld-linux-
-     0x00000328 7838362d 363
-
-O *linker* dinâmico realiza as seguintes operações:
-
-   #. Mapeia as secções de dados e de código
-      das bibliotecas dinâmicas que vão ser utilizadas
-      no espaço de memória do processo;
-
-   #. Resolve as referências existentes no programa para dados e código das bibliotecas.
-      Esta operação não utiliza o processo das *relocations* porque isso implicaria alterações de código.
-      É resolvido via PLT/GOT.
-
-.. figure:: physical_address_space.svg
-   :align: center
-   :scale: 120
-   
 SONAME
 ------
 
@@ -647,7 +625,10 @@ Inverter a ordem de colocação da biblioteca em relação ao objeto ``main.o``.
 
 .. code-block:: console
 
-$ gcc libdemo.a main.o -o main
+   $ gcc libdemo.a main.o -o main
 
 Referências
 ===========
+
+`Program Library HOWTO <https://tldp.org/HOWTO/Program-Library-HOWTO/index.html>`_
+

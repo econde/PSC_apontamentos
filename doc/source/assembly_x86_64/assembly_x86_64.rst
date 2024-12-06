@@ -239,7 +239,7 @@ reservada pelo chamador, onde a função deposita o resultado.
 +------------------------------------------------------------------------+----------------------------------------------------------------------------+
 | .. literalinclude:: ../../../code/assembly_x86_64/function/packdate.c  | .. literalinclude:: ../../../code/assembly_x86_64/function/packdate_asm.s  |
 |    :language: c                                                        |    :language: asm                                                          |
-|    :caption: packdate.c                                                |    :caption: getbits_asm.s                                                 |
+|    :caption: packdate.c                                                |    :caption: packdate.s                                                    |
 +------------------------------------------------------------------------+----------------------------------------------------------------------------+
 
 +----------------------------------------------------------------------------+--------------------------------------------------------------------------------+
@@ -411,7 +411,7 @@ Variáveis simples
 |    :caption: strlen.c                                                  |    :caption: strlen_asm.s                                                  |
 +------------------------------------------------------------------------+----------------------------------------------------------------------------+
 
-+----------------------------------------------------------------------------+--------- ----------------------------------------------------------------------+
++----------------------------------------------------------------------------+--------------------------------------------------------------------------------+
 | .. literalinclude:: ../../../code/assembly_x86_64/function/use_strlen.c    | .. literalinclude:: ../../../code/assembly_x86_64/function/use_strlen_asm.s    |
 |    :language: c                                                            |    :language: asm                                                              |
 |    :caption: use_strlen.c                                                  |    :caption: use_strlen_asm.s                                                  |
@@ -489,6 +489,10 @@ Função folha
    * Deve-se preferir utilizar os registos *caller saved*.
    * Se tiver que se utilizar os registos *callee saved* deve-se assegurar à saída da função o mesmo conteúdo que tinham à entrada.
     
+**Exemplo**
+
+As funções de exemplos anteriores como ``get_lighter``, ``find_bigger``, ``strlen`` e ``unpack_date``
+são exemplos de funções folha, programadas segundo os critérios enumerados acima.
 
 Função ramo
 ...........
@@ -679,8 +683,25 @@ A instrução ``mov    %rsp, %rbp`` ao reposicionar RSP na posição de RBP,
 liberta simultaneamente o espaço ocupado em *stack* quer no alojamento de variáveis locais,
 quer na passagem de argumentos.
 
+*Red zone*
+==========
+
+A *read zone* é área de *stack* além da posição indicada pelo registo SP (endereços inferiores, na arquitetura x86_64).
+Esta área tem a dimensão de 128 *bytes* e está resguardada de modificações por rotinas de atendimento de interrupções ou de excepções.
+Pode ser utilizada para armazenamento temporário de dados que não sejam necessários entre chamadas a funções.
+Nas funções folha pode ser utilizada para alojar toda a *stack frame* sem necessidade de ajustar do registo SP.
+
+**Exemplo**
+
++---------------------------------------------------------------------------+------------------------------------------------------------------------------+
+| .. literalinclude:: ../../../code/assembly_x86_64/stack_frame/mfd.c       | .. literalinclude:: ../../../code/assembly_x86_64/stack_frame/mfd_asm.s      |
+|    :language: c                                                           |    :language: asm                                                            |
+|    :caption: mfd.c                                                        |    :caption: mfd_asm.s                                                       |
+|                                                                           |    :linenos:                                                                 |
++---------------------------------------------------------------------------+------------------------------------------------------------------------------+
+
 *Buffer overflow*
------------------
+=================
 
 A situação conhecida como *buffer overflow* caracteriza-se pelo acesso a posições de memória
 além dos limites das variáveis.
@@ -720,12 +741,15 @@ Geração do executável: ::
 
 
 *Stack protector*
------------------
+=================
 
-O **gcc** dispõe de um meio, não eficaz, de deteção da ocorrência de *buffer overflow*.
+O **gcc** dispõe de um meio de deteção da ocorrência de *buffer overflow*.
 À entrada na função é posicionada uma marcação no limite da *stack frame*;
 à saída da função verifica-se se a marcação foi corrompida.
 Esta marcação é designada por \"canário\".
+
+Este método não completamente eficaz. Se o acesso se der para além do canário sem o modificar,
+não será detetado.
 
 Esta funcionalidade é ativada/desativada através das opções seguintes.
 Por omissão, é ativada. ::
@@ -741,7 +765,7 @@ Por omissão, é ativada. ::
 +---------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
 
 *Stack clash*
--------------
+=============
 
 O *stack clash* acontece quando a dimensão de uma variável local depende de um parâmetro (a dimensão é variável).
 As variáveis locais são alojadas no *stack* por deslocação do *stack pointer*.
